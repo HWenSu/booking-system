@@ -27,20 +27,33 @@ const Service = () => {
     <div className="my-8">
       <div className="my-6">
         <h2>OUR SERVICE</h2>
-        <p className="mb-6">Please check below for our services</p>
         <FontAwesomeIcon
           icon={faPagelines}
           style={{ color: "#b4a69c" }}
           size="2xl"
+          className="my-6"
         />
+        <p>Please check below for our services</p>
       </div>
-      <ul className="flex">
+      <ul className="grid grid-cols-3 gap-8 px-[5vw]">
         {services.map((service, index) => (
-          <li key={index}>
-            <a href="">
-              <img src={service.url} alt={service.item} />
-              <h3>{service.item}</h3>
-            </a>
+          <li key={index} className="relative">
+            <div className="overflow-hidden">
+              <img
+                src={service.url}
+                alt={service.item}
+                className="w-full opacity-60 blur-[4px]"
+              />
+            </div>
+            <h3
+              style={{
+                backgroundImage: `url(${service.url})`,
+                backgroundSize: 'cover',
+              }}
+              className=" w-full h-full absolute bottom-0 left-0 text-[80px] text-justify bg-clip-text text-transparent "
+            >
+              {service.item.toUpperCase()}
+            </h3>
           </li>
         ))}
       </ul>
