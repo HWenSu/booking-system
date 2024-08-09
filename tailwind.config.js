@@ -8,6 +8,13 @@ export default {
         secondary: "var(--secondary-color)",
         tertiary: "var(--tertiary-color)",
       },
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+      },
+      saturate: {
+        25: '.25',
+        90: '.90',
+      }
     },
   },
   plugins: [],
