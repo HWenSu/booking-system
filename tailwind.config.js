@@ -7,6 +7,7 @@ export default {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
         tertiary: "var(--tertiary-color)",
+        highLight: "var(--hightLight)"
       },
       fontFamily: {
         outfit: ["Outfit", "sans-serif"],

@@ -12,6 +12,7 @@
   --primary-color: #e7e1d9;
   --secondary-color: #b1937c;
   --tertiary-color:#b4a69c;
+  --hightLight:#615246 ;
   }
   body {
     @apply font-outfit
