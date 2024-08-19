@@ -4,7 +4,7 @@
 
 @layer base {
   #root {
-  /* max-width: 1980px; */
+  max-width: 1980px;
   margin: 0 auto;
   text-align: center;
   background:linear-gradient(to right top, #f6f0e5, #dacfbe, #f8f3eb, #f8f4ee, #f9f6f1);

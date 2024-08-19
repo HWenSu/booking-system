@@ -18,6 +18,7 @@ export default {
       },
       animation: {
         "fade-in-up": "fadeInUp 0.5s ease-out",
+        "fade-in-title": "fadeInUp 1s ease-in-out"
       },
     },
   },

@@ -19,18 +19,18 @@ const Service = () => {
   const closeModal = () => setModalOpenIndex(null);
 
   const services = [
-    { item: "Express massage", url: express },
-    { item: "Foot massage", url: foot },
-    { item: "Hot stone massage", url: hotStone },
-    { item: "Ginger oil massage", url: ginger },
-    { item: "Thai massage", url: thai },
-    { item: "Shiatsu massage", url: shiatsu },
+    { item: "Express massage", url: express, price: 1000, duration: [60, 90], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
+    { item: "Foot massage", url: foot,  price: 1500, duration: [60, 90], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
+    { item: "Hot stone massage", url: hotStone,  price: 1800, duration: [60, 90, 100], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
+    { item: "Ginger oil massage", url: ginger,  price: 1300, duration: [60, 90, 100, 200], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
+    { item: "Thai massage", url: thai,  price: 1900, duration: [60, 90], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
+    { item: "Shiatsu massage", url: shiatsu,  price: 2000, duration: [60], description: "Along with the hurried pace of life at the moment, your job occupies a lot of your time. It is the pressure at work and worries in life that reduce your health. Understanding the need to relax, miumiu offers express massage services that you can use regularly and do not take too much time to have a golden health." },
   ];
 
   return (
     <div className="my-8">
       <div className="my-10">
-        <h2 className="text-tertiary font-semibold text-[3rem]">OUR SERVICE</h2>
+        <h2 className="text-tertiary font-semibold text-[3rem] animate-fade-in-title">OUR SERVICE</h2>
         <FontAwesomeIcon
           icon={faPagelines}
           style={{ color: "#b4a69c" }}
@@ -41,7 +41,7 @@ const Service = () => {
           Please check below for our services
         </p>
       </div>
-      <ul className="grid xl:grid-cols-3 2xl:grid-cols-4 md:grid-cols-2 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
+      <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
         {services.map((service, index) => (
           <li key={index}>
             <button
@@ -71,10 +71,9 @@ const Service = () => {
                 isOpen={true}
                 onClose={closeModal}
                 title={service.item}
-                info={
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum"
-                }
-                duration={["60 min", "90 min"]}
+                description={ service.description }
+                duration={service.duration}
+                price={ service.price }
                 imgURL={service.url}
               />
             )}
