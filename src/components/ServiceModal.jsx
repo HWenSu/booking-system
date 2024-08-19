@@ -10,7 +10,7 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, p
         <div className="flex items-center justify-around">
           <img
             src={imgURL}
-            alt="{title}"
+            alt={title}
             className="w-[12rem] rounded-full mr-[3rem]"
           />
           
