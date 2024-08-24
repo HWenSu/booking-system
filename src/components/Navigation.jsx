@@ -6,7 +6,7 @@ const Navigation = () => {
   return (
     <div>
       <nav>
-        <ul className="flex bg-primary items-center justify-between h-28 ">
+        <ul className="flex bg-white/50 items-center justify-between h-28 bg-fixed">
           <li className="basis-40">
             <Link to="/">
               <h1 className="min-w-40">
