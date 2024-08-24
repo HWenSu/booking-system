@@ -1,7 +1,13 @@
-// duration上限為4個
+// 從env取得duration上限數量
+const maxDuration = parseInt(import.meta.env.VITE_MAX_DURATION_LENGTH, 10)
+
 const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, price }) => {
   if (!isOpen) return null;
-  // 檢查duration數量(透過env檔拿變數看是否在開發期 再檢查duration數量)
+  // 檢查duration數量
+  if(duration.length > maxDuration){
+    return console.log(`duration cannot more than ${maxDuration} `)
+  }
+  
   return (
     <div className="  fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40">
       <div className="relative bg-white w-[50rem] p-7 rounded-[30px] z-50 animate-fade-in-up opacity-80">
