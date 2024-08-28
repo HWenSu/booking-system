@@ -1,8 +1,7 @@
-import React from 'react'
 import useAPIService from '../components/hooks/useAPIService';
 
 const Staff = () => {
-  const {data, error} = useAPIService('/modals/staffData.json')
+  const {data} = useAPIService('/modals/staffData.json')
 
   return (
     <div>

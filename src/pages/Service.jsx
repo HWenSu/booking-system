@@ -31,7 +31,7 @@ const Service = () => {
         { data && 
         data.services.map((service, index) => {
           const imgURL = `/modals/images/${service.url}`
-          const title = `${service.item}`
+          const title = `${service.name}`
           return (
             <li key={index}>
               <button
