@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const BookingSelectForm = ({data, name} ) => {
+const BookingSelectForm = ({data, name, value} ) => {
   const [formData, setFormData] = useState({
     service: "",
     timeStamp: "",
@@ -20,25 +20,22 @@ const BookingSelectForm = ({data, name} ) => {
     });
   };
 
+  
+
   return (
-    <div>
-      <label htmlFor={name}>
-        {name}
-        <select
-          name={name}
-          id={name}
-          value={formData[name]}
-          onChange={handleChange}
-        >
-          <option value="">Choose one service</option>
-          {data.map((item, i) => (
-            <option key={i} value={{item}.name}>
-              {item.name.toUpperCase()}
-            </option>
-          ))}
-        </select>
-      </label>
-    </div>)
+      <select name={name} id={name}>
+        <option value="">Choose {name} </option>
+        { data.map((item, index) => {
+           {
+             console.log(item);
+           }
+           return <option key={index} value={item[value]}>
+            {item[value]}
+           </option>;
+          })
+        }
+      </select>
+  );
 };
 
 export default BookingSelectForm;

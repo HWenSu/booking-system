@@ -11,11 +11,42 @@ const Booking = () => {
   if( staffError ) return <div>Error: { staffError.message }</div>
 
   return (
-    <form>
-      <h2>Booking</h2>
-      {console.log(serviceData.services)}
-      <BookingSelectForm data={serviceData.services} name="service" />
-      <BookingSelectForm data={staffData.staff} name="staff" />
+    <form className="flex flex-col m-4">
+      <h2>BOOKING</h2>
+      {/* <label htmlFor="service">
+        SERVICE
+        <BookingSelectForm
+          data={serviceData.services}
+          name="service"
+          value={item.name}
+        />
+      </label> */}
+      <label htmlFor="service">
+        SERVICE
+        <BookingSelectForm 
+        name="service" 
+        data={serviceData.services} 
+        value="name" 
+        />
+      </label>
+
+      <label htmlFor="staff">
+        STAFF GENDER
+        <BookingSelectForm
+          name="gender"
+          data={staffData.staff}
+          value="gender"
+        />
+      </label>
+
+      <label htmlFor="staff">
+        STAFF
+        <BookingSelectForm
+          name="name"
+          data={staffData.staff}
+          value="name"
+        />
+      </label>
     </form>
   );
 }
