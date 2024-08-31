@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import BookingSelectForm from "../components/BookingSelectForm";
 import useAPIService from "../components/hooks/useAPIService";
+import DatePicker from "../components/BookingTimeStamp";
+import BookingTimeStamp from "../components/BookingTimeStamp";
 
 const Booking = () => {
   //儲存表單資料
@@ -41,7 +43,7 @@ const Booking = () => {
       staffData.staff.filter( staff => staff.gender === formData.gender) : staffData.staff
       setFilteredStaff(filteredStaff);
     } else {
-      setFilteredStaff([]); // 避免在staff還未得取時被判定為 null 需加條件設置為 []
+      setFilteredStaff([]); // 如果 staff　不在，設置為空陣列，防止錯誤
     }
   }, [staffData, formData.gender]);
 
@@ -82,6 +84,7 @@ const Booking = () => {
           onChange={handleChange}
         />
       </label>
+      <BookingTimeStamp />
     </form>
   );
 }
