@@ -1,40 +1,26 @@
-import { useState } from "react"
 
-const BookingSelectForm = ({data, name, value} ) => {
-  const [formData, setFormData] = useState({
-    service: "",
-    timeStamp: "",
-    staff: "",
-    name: "",
-    gender: "",
-    phone: "",
-    email: "",
-    remark: "",
-  });
 
+const BookingSelectForm = ({ data, name, getValue ,onChange}) => {
+  
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const { value } = e.target;
+    onChange(name, value); // 將事件回調給父層
   };
 
-  
-
   return (
-      <select name={name} id={name}>
-        <option value="">Choose {name} </option>
-        { data.map((item, index) => {
-           {
-             console.log(item);
-           }
-           return <option key={index} value={item[value]}>
-            {item[value]}
-           </option>;
-          })
+    <select name={name} id={name} onChange={handleChange}>
+      <option value="">Choose {name} </option>
+      {data.map((item, index) => {
+        {
+          console.log(item);
         }
-      </select>
+        return (
+          <option key={index} value={item[getValue]}>
+            {item[getValue]}
+          </option>
+        );
+      })}
+    </select>
   );
 };
 
