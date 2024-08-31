@@ -6,14 +6,15 @@ const BookingSelectForm = ({ data, name, getValue ,onChange}) => {
     onChange(name, value); // 將事件回調給父層
   };
 
+  const isDurationArray = Array.isArray(data[0]?.[getValue]) && name === 'duration'
+
   return (
     <select name={name} id={name} onChange={handleChange}>
       {console.log(data)}
       <option disabled value="">
         Choose {name}{" "}
       </option>
-      {Array.isArray(data[0][getValue]) && name === "duration"
-        ? data.map((item, i) =>
+      {isDurationArray ? data.map((item, i) =>
             item[getValue].map((subItem, j) => (
               <option key={`${i}-${j}`} value={subItem}>
                 {subItem}

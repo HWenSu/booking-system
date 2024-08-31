@@ -1,22 +1,31 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
+import { addMinutes } from "date-fns";
 
-const BookingTimeStamp = () => {
+const BookingTimeStamp = ({ duration, onTimeChange }) => {
   const [startDate, setStartDate] = useState(new Date());
+
+  const handleChange = (date) => {
+    const endDate = addMinutes(date, duration)
+    setStartDate(date)
+    onTimeChange(date, endDate)
+  }
+
   return (
-    <DatePicker
+    <div>
+          <DatePicker
       selected={startDate}
-      onChange={(date) => setStartDate(date)}
+      onChange={handleChange}
       showTimeSelect
       timeFormat="HH:mm"
-      timeIntervals={15}
+      timeIntervals={duration}
       timeCaption="time"
       dateFormat="MMMM d, yyyy h:mm aa"
     />
-  );
+    </div>
 
-  
+  );
 };
 
 export default BookingTimeStamp;

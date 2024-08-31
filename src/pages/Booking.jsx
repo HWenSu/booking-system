@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import BookingSelectForm from "../components/BookingSelectForm";
 import useAPIService from "../components/hooks/useAPIService";
-import DatePicker from "../components/BookingTimeStamp";
 import BookingTimeStamp from "../components/BookingTimeStamp";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
+  
+  //跳轉路由
+  const navigate = useNavigate()
+  const handleNext = ()=> {
+    navigate("/miumiu-spa/orders/information");
+  }
+
   //儲存表單資料
   const [formData, setFormData] = useState({
     service: "",
-    timeStamp: "",
+    startTime: "",
+    endTime: "",
     staff: "",
     name: "",
     gender: "",
@@ -27,6 +35,14 @@ const Booking = () => {
       ...preFormData,
       [name]: value,
     }));
+  };
+
+  const handleTimeChange = (date, endDate) => {
+    setFormData((preFormData)=> ({
+      ...preFormData,
+      startTime: date,
+      endTime: endDate
+    }))
   };
 
   // 取得後端資料
@@ -107,7 +123,14 @@ const Booking = () => {
         />
       </label>
 
-      <BookingTimeStamp />
+      <BookingTimeStamp
+        duration={formData.duration}
+        onTimeChange={handleTimeChange}
+      />
+
+      <button className="w-20 bg-white p-4 m-5" onClick={handleNext}>
+        NEXT
+      </button>
     </form>
   );
 }
