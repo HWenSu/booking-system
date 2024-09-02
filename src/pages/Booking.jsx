@@ -5,7 +5,6 @@ import BookingDropdown from "../components/BookingDropdown";
 import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
 
 const Booking = () => {
-
   //儲存表單資料
   const [formData, setFormData] = useState({
     service: "",
@@ -19,9 +18,12 @@ const Booking = () => {
     remark: "",
   });
 
-  //處存過濾清單
+
+  //儲存過濾清單
   const [filteredStaff, setFilteredStaff] = useState([]);
   const [filterServices, setFilterServices] = useState([]);
+  //儲存隱藏變數
+  const [isHidden, setIsHidden] = useState(false)
 
   //處理表單變化
   const handleChange = (name, value) => {
@@ -39,9 +41,7 @@ const Booking = () => {
     "/modals/staffData.json"
   );
 
-  
   useEffect(() => {
-
     //監聽 formData.gender 來過濾 Staff 名單
     if (staffData && staffData.staff) {
       const filteredStaff = formData.gender
@@ -64,8 +64,7 @@ const Booking = () => {
     }
   }, [staffData, formData.gender, serviceData, formData.service]);
 
-
-//檢查API資料是否獲取成功
+  //檢查API資料是否獲取成功
   if (!serviceData || !staffData) return <div>Loading</div>;
   if (serviceError) return <div>Error: {serviceError.message}</div>;
   if (staffError) return <div>Error: {staffError.message}</div>;
@@ -78,24 +77,37 @@ const Booking = () => {
     }));
   };
 
+  //處理下一步按鈕的函式
+  const handleNext = () => {
+    setIsHidden(true)
+  }
+  //處理上一步按鈕的函式
+  const handleBack = () => {
+    setIsHidden(false)
+  }
+
   return (
     <form className="flex flex-col m-4">
       <h2>BOOKING</h2>
+      <div className={isHidden ? "hidden" : "block"}>
+        <BookingDropdown
+          serviceData={serviceData.services}
+          filterService={filterServices}
+          staffData={staffData.staff}
+          filteredStaff={filteredStaff}
+          onChange={handleChange}
+        />
+        <BookingTimeStamp
+          duration={formData.duration}
+          onTimeChange={handleTimeChange}
+        />
+        <button onClick={handleNext}>Next</button>
+      </div>
 
-      <BookingDropdown
-        serviceData={serviceData.services}
-        filterService={filterServices}
-        staffData={staffData.staff}
-        filteredStaff={filteredStaff}
-        onChange={handleChange}
-      />
-
-      <BookingTimeStamp
-        duration={formData.duration}
-        onTimeChange={handleTimeChange}
-      />
-
-      <BookingInfo />
+      <div className={isHidden ? "block" : "hidden"}>
+        <BookingInfo />
+        <button onClick={handleBack}>Back</button>
+      </div>
     </form>
   );
 }
