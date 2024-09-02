@@ -2,6 +2,6 @@
   "staff":[
     { "id" : 1, "name":"cindy", "gender": "female", "expertise": ["tai", "foot"], "certificates": {"body": "Level 3", "face":"Level 2"}, "url": "/modals/images/avatar01.jpeg"},
     { "id" : 2, "name":"amy", "gender": "-", "expertise": ["heat stone", "face"], "certificates": {"body": "Level 1", "face":"Level 2"}, "url": "/modals/images/avatar02.jpeg" },
-    { "id" : 3, "name":"Eco", "gender": "male", "expertise": ["tai"], "certificates": {"body": "Level 3", "face":"Level 3"}, "url": "/modals/images/avatar03.jpeg" }
+    { "id" : 3, "name":"eco", "gender": "male", "expertise": ["tai"], "certificates": {"body": "Level 3", "face":"Level 3"}, "url": "/modals/images/avatar03.jpeg" }
   ]
 }

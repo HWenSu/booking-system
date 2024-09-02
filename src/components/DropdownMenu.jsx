@@ -1,22 +1,21 @@
 
-const BookingSelectForm = ({ data, name, getValue ,onChange}) => {
-  
+const DropdownMenu = ({ data, name, getValue, onChange }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     onChange(name, value); // 將事件回調給父層
   };
 
-  const isDurationArray = Array.isArray(data[0]?.[getValue]) && name === 'duration'
+  const isDurationArray =
+    Array.isArray(data[0]?.[getValue]) && name === "duration";
 
   return (
-    <select name={name} id={name} onChange={handleChange}>
+    <select name={name} id={name} onChange={handleChange} className="m-2">
       {console.log(data)}
-      <option disabled value="">
-        Choose {name}{" "}
-      </option>
-      {isDurationArray ? data.map((item, i) =>
+      <option value="">Choose {name} </option>
+      {isDurationArray
+        ? data.map((item, i) =>
             item[getValue].map((subItem, j) => (
-              <option key={`${i}-${j}`} value={subItem}>
+              <option key={`${i}-${j}`} value={subItem} className="p-2" >
                 {subItem}
               </option>
             ))
@@ -28,6 +27,6 @@ const BookingSelectForm = ({ data, name, getValue ,onChange}) => {
           ))}
     </select>
   );
-}
+};
 
-export default BookingSelectForm;
+export default DropdownMenu;

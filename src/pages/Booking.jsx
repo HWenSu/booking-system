@@ -1,16 +1,10 @@
 import { useState, useEffect } from "react";
-import BookingSelectForm from "../components/BookingSelectForm";
-import useAPIService from "../components/hooks/useAPIService";
 import BookingTimeStamp from "../components/BookingTimeStamp";
-import { useNavigate } from "react-router-dom";
+import BookingInfo from "../components/BookingInfo";
+import BookingDropdown from "../components/BookingDropdown";
+import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
 
 const Booking = () => {
-  
-  //跳轉路由
-  const navigate = useNavigate()
-  const handleNext = ()=> {
-    navigate("/miumiu-spa/orders/information");
-  }
 
   //儲存表單資料
   const [formData, setFormData] = useState({
@@ -37,14 +31,6 @@ const Booking = () => {
     }));
   };
 
-  const handleTimeChange = (date, endDate) => {
-    setFormData((preFormData)=> ({
-      ...preFormData,
-      startTime: date,
-      endTime: endDate
-    }))
-  };
-
   // 取得後端資料
   const { data: serviceData, error: serviceError } = useAPIService(
     "/modals/serviceData.json"
@@ -53,84 +39,63 @@ const Booking = () => {
     "/modals/staffData.json"
   );
 
-  //監聽 formData.gender 來過濾 Staff 名單
+  
   useEffect(() => {
+
+    //監聽 formData.gender 來過濾 Staff 名單
     if (staffData && staffData.staff) {
-      const filteredStaff = formData.gender ?
-        staffData.staff.filter((staff) => staff.gender === formData.gender)
+      const filteredStaff = formData.gender
+        ? staffData.staff.filter((staff) => staff.gender === formData.gender)
         : staffData.staff;
       setFilteredStaff(filteredStaff);
     } else {
       setFilteredStaff([]); // 如果 staff　不在，設置為空陣列，防止錯誤
     }
-  }, [staffData, formData.gender]);
+    //監聽formData.service 來過濾 duration 名單
+    if (serviceData && serviceData.services) {
+      const filterService = formData.service
+        ? serviceData.services.filter(
+            (service) => service.name === formData.service
+          )
+        : serviceData.services;
+      setFilterServices(filterService);
+    } else {
+      setFilterServices([]);
+    }
+  }, [staffData, formData.gender, serviceData, formData.service]);
 
-  //監聽formData.service 來過濾 duration 名單
-  useEffect(() => {
-    if( serviceData && serviceData.services ) {
-      const filterService = formData.service ?
-      serviceData.services.filter((service) => service.name === formData.service)
-      : serviceData.services
-      setFilterServices(filterService)
-    } else { setFilterServices([]) }
-  }, [serviceData, formData.service])
 
+//檢查API資料是否獲取成功
   if (!serviceData || !staffData) return <div>Loading</div>;
   if (serviceError) return <div>Error: {serviceError.message}</div>;
   if (staffError) return <div>Error: {staffError.message}</div>;
+
+  const handleTimeChange = (date, endDate) => {
+    setFormData((preFormData) => ({
+      ...preFormData,
+      startTime: date,
+      endTime: endDate,
+    }));
+  };
 
   return (
     <form className="flex flex-col m-4">
       <h2>BOOKING</h2>
 
-      <label htmlFor="service">
-        SERVICE
-        <BookingSelectForm
-          name="service"
-          data={serviceData.services}
-          getValue="name"
-          onChange={handleChange}
-        />
-      </label>
-
-      <label htmlFor="duration">
-        DURATION
-        <BookingSelectForm
-          name="duration"
-          data={filterServices}
-          getValue="duration"
-          onChange={handleChange}
-        />
-      </label>
-
-      <label htmlFor="gender">
-        STAFF GENDER
-        <BookingSelectForm
-          name="gender"
-          data={staffData.staff}
-          getValue="gender"
-          onChange={handleChange}
-        />
-      </label>
-
-      <label htmlFor="staff">
-        STAFF
-        <BookingSelectForm
-          name="name"
-          data={filteredStaff}
-          getValue="name"
-          onChange={handleChange}
-        />
-      </label>
+      <BookingDropdown
+        serviceData={serviceData.services}
+        filterService={filterServices}
+        staffData={staffData.staff}
+        filteredStaff={filteredStaff}
+        onChange={handleChange}
+      />
 
       <BookingTimeStamp
         duration={formData.duration}
         onTimeChange={handleTimeChange}
       />
 
-      <button className="w-20 bg-white p-4 m-5" onClick={handleNext}>
-        NEXT
-      </button>
+      <BookingInfo />
     </form>
   );
 }

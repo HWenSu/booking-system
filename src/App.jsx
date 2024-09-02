@@ -6,7 +6,6 @@ import HomePage from './pages/HomePage';
 import Service from './pages/Service';
 import Staff from "./pages/Staff"
 import Booking from "./pages/Booking";
-import BookingInfo from './pages/BookingInfo';
 
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
           <Route path="miumiu-spa/services" element={<Service />}></Route>
           <Route path="miumiu-spa/staff" element={<Staff />}></Route>
           <Route path="miumiu-spa/orders" element={<Booking />}></Route>
-          <Route path="miumiu-spa/orders/information" element={<BookingInfo />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

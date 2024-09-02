@@ -10,7 +10,7 @@ const BookingInput = ({ title, onInputChange, isRequired }) => {
   };
 
   return (
-    <div className="flex justify-center p-3">
+    <div className="flex justify-center p-2">
       <p className="text-center px-5">{title}</p>
       <input
         value={inputValue}
