@@ -10,7 +10,6 @@ const DropdownMenu = ({ data, name, getValue, onChange }) => {
 
   return (
     <select name={name} id={name} onChange={handleChange} className="m-2">
-      {console.log(data)}
       <option value="">Choose {name} </option>
       {isDurationArray
         ? data.map((item, i) =>

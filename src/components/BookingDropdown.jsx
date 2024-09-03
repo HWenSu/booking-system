@@ -44,7 +44,7 @@ const BookingDropdown = ({
       <label htmlFor="staff">
         STAFF
         <DropdownMenu
-          name="name"
+          name="staff"
           data={filteredStaff}
           getValue="name"
           onChange={onChange}

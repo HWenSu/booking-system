@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BookingTimeStamp from "../components/BookingTimeStamp";
 import BookingInfo from "../components/BookingInfo";
 import BookingDropdown from "../components/BookingDropdown";
+import axios from 'axios'
 import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
 
 const Booking = () => {
@@ -18,20 +19,11 @@ const Booking = () => {
     remark: "",
   });
 
-
   //儲存過濾清單
   const [filteredStaff, setFilteredStaff] = useState([]);
   const [filterServices, setFilterServices] = useState([]);
   //儲存隱藏變數
-  const [isHidden, setIsHidden] = useState(false)
-
-  //處理表單變化
-  const handleChange = (name, value) => {
-    setFormData((preFormData) => ({
-      ...preFormData,
-      [name]: value,
-    }));
-  };
+  const [isHidden, setIsHidden] = useState(false);
 
   // 取得後端資料
   const { data: serviceData, error: serviceError } = useAPIService(
@@ -69,6 +61,15 @@ const Booking = () => {
   if (serviceError) return <div>Error: {serviceError.message}</div>;
   if (staffError) return <div>Error: {staffError.message}</div>;
 
+  //處理表單變化
+  const handleChange = (name, value) => {
+    setFormData((preFormData) => ({
+      ...preFormData,
+      [name]: value,
+    }));
+  };
+
+  //處理時間戳改變函式
   const handleTimeChange = (date, endDate) => {
     setFormData((preFormData) => ({
       ...preFormData,
@@ -77,17 +78,50 @@ const Booking = () => {
     }));
   };
 
+  //處理表單提交
+  const handleSubmit = (e) => {
+    e.preventDefault(); //防止頁面重新整理
+
+    // try {
+    //   const response = await axios.post(
+    //     "http://localhost:3000/miumiu-spa/orders",
+    //     formData,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //     }
+    //   );
+
+    console.log("Form submitted successfully:", formData);
+
+    //清空表單資料
+    setFormData({
+      service: "",
+      startTime: "",
+      endTime: "",
+      staff: "",
+      name: "",
+      gender: "",
+      phone: "",
+      email: "",
+      remark: "",
+    });
+
+    // } catch (error) {
+    //   console.log("Error submitting form:", error);
+    // }
+  };
+
   //處理下一步按鈕的函式
   const handleNext = () => {
-    setIsHidden(true)
-  }
+    setIsHidden(true);
+  };
   //處理上一步按鈕的函式
   const handleBack = () => {
-    setIsHidden(false)
-  }
+    setIsHidden(false);
+  };
 
   return (
-    <form className="flex flex-col m-4">
+    <form onSubmit={handleSubmit} className="flex flex-col m-4">
       <h2>BOOKING</h2>
       <div className={isHidden ? "hidden" : "block"}>
         <BookingDropdown
@@ -105,8 +139,9 @@ const Booking = () => {
       </div>
 
       <div className={isHidden ? "block" : "hidden"}>
-        <BookingInfo />
+        <BookingInfo handleChange={handleChange} />
         <button onClick={handleBack}>Back</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
   );

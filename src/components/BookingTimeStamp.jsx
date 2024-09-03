@@ -10,8 +10,6 @@ const BookingTimeStamp = ({ duration, onTimeChange }) => {
     const endDate = addMinutes(date, duration)
     setStartDate(date)
     onTimeChange(date, endDate)
-    console.log(date) 
-    console.log( typeof date)
   }
 
   return (
