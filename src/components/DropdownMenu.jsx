@@ -9,12 +9,20 @@ const DropdownMenu = ({ data, name, getValue, onChange }) => {
     Array.isArray(data[0]?.[getValue]) && name === "duration";
 
   return (
-    <select name={name} id={name} onChange={handleChange} className="m-2">
-      <option value="">Choose {name} </option>
+    <select
+      name={name}
+      id={name}
+      onChange={handleChange}
+      className="m-2"
+      required
+    >
+      <option value="">
+        Choose {name}{" "}
+      </option>
       {isDurationArray
         ? data.map((item, i) =>
             item[getValue].map((subItem, j) => (
-              <option key={`${i}-${j}`} value={subItem} className="p-2" >
+              <option key={`${i}-${j}`} value={subItem} className="p-2">
                 {subItem}
               </option>
             ))
