@@ -1,12 +1,12 @@
 // 從env取得duration上限數量
-const maxDuration = parseInt(import.meta.env.VITE_MAX_DURATION_LENGTH, 10)
+// const maxDuration = parseInt(import.meta.env.VITE_MAX_DURATION_LENGTH, 10)
 
 const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, price }) => {
   if (!isOpen) return null;
   // 檢查duration數量
-  if(duration.length > maxDuration){
-    return console.log(`duration cannot more than ${maxDuration} `)
-  }
+  // if(duration.length > maxDuration){
+  //   return console.log(`duration cannot more than ${maxDuration} `)
+  // }
   
   return (
     <div className="  fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40">
@@ -21,7 +21,8 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, p
           />
           
           <ul className="grid grid-cols-2 gap-2 text-secondary">
-    
+            {console.log(duration)}
+            {console.log(price)}
             {duration &&
               duration.map((min) => (
                 <li key={min} className="flex p-3 bg-primary rounded-full m-5 justify-between items-center">

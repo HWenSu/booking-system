@@ -5,7 +5,10 @@ import ServiceModal from "../components/ServiceModal";
 import useAPIService from '../components/hooks/useAPIService';
 
 const Service = () => {
-  const {data, error} = useAPIService('/modals/serviceData.json')
+  // 獲取 API 資料
+  const { data, error } = useAPIService(
+    'http://localhost:5000/service'
+  );
   const [ modalOpenIndex, setModalOpenIndex ] = useState(null)
 
   const openModal = (index) => setModalOpenIndex(index);
@@ -29,8 +32,8 @@ const Service = () => {
       </div>
       <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
         { data && 
-        data.services.map((service, index) => {
-          const imgURL = `/modals/images/${service.url}`
+        data.map((service, index) => {
+          const imgURL = `${service.img}`
           const title = `${service.name}`
           return (
             <li key={index}>
