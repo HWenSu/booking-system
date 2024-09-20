@@ -1,13 +1,20 @@
-const StaffDropdown = ( {data, isHidden} ) => {
+const StaffDropdown = ( {data, isHidden, onChange} ) => {
   {console.log(data)}
   return (
     <div className={isHidden ? "hidden" : "block"}>
       <label>{data[0].label}</label>
-      <select className="m-2">
+      <select
+        className="m-2"
+        name={data[0].label}
+        onChange={(e) => onChange(data[0].label, e.target.value)}
+      >
         <option value="">Choose {data[0].label}</option>
         {data[0] &&
           data[0].option.map((option, index) => (
-            <option key={index}> {option.name}</option>
+            <option key={index} value={option.name}>
+              {" "}
+              {option.name}
+            </option>
           ))}
       </select>
     </div>

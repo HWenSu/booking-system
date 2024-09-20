@@ -22,12 +22,13 @@ const componentMap = {
 const Booking = () => {
   //儲存表單資料
   const [formData, setFormData] = useState({
-    service: "",
+    Service: "",
+    Duration: "",
+    Gender: "",
+    Staff: "",
     startTime: "",
     endTime: "",
-    staff: "",
     name: "",
-    gender: "",
     phone: "",
     email: "",
     remark: "",
@@ -67,27 +68,26 @@ const Booking = () => {
     }
   };
 
-  //處理表單變化
-  // const handleChange = (name, value) => {
-  //   setFormData((preFormData) => ({
-  //     ...preFormData,
-  //     [name]: value,
-  //   }));
-  // };
+  // 處理表單變化
+  const handleChange = (name, value) => {
+    setFormData((preFormData) => ({
+      ...preFormData,
+      [name]: value,
+    }));
+  };
 
-  //處理時間戳改變函式
-  // const handleTimeChange = (date, endDate) => {
-  //   setFormData((preFormData) => ({
-  //     ...preFormData,
-  //     startTime: date,
-  //     endTime: endDate,
-  //   }));
-  // };
+  //處理時間改變函式
+  const handleTimeChange = (date, endDate) => {
+    setFormData((preFormData) => ({
+      ...preFormData,
+      startTime: date,
+      endTime: endDate,
+    }));
+  };
 
   //處理表單提交
   const handleSubmit = (e) => {
     e.preventDefault(); //防止頁面重新整理
-
     console.log("Form submitted successfully:", formData);
 
     //清空表單資料
@@ -118,9 +118,11 @@ const Booking = () => {
               key={index}
               data={item.Data}
               isHidden={getHidden(item.category)}
-              // onChange={onChange}
+              onChange={handleChange}
+              onTimeChange={handleTimeChange}
               changePageString={changePageString}
               onChangePage={handleChangePage}
+              duration={formData.Duration}
             />
           );
         })}

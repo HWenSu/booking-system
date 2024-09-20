@@ -8,7 +8,6 @@ const TimePicker = ({ duration, onTimeChange, isHidden }) => {
 
   const handleChange = (date) => {
     setStartDate(date);
-
     const endDate = addMinutes(date, duration);
     const formattedDate = format(date, "yyyy-MM-dd HH:mm");
     const formattedEndDate = format(endDate, "yyyy-MM-dd HH:mm");

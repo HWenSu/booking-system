@@ -1,4 +1,3 @@
-
 const ServiceDropdown = ({ data, onChange, isHidden }) => {
   return (
     <div className={isHidden ? "hidden" : "block"}>
@@ -6,7 +5,7 @@ const ServiceDropdown = ({ data, onChange, isHidden }) => {
         data.map((item, itemIndex) => (
           <div key={itemIndex}>
             <label>{item.label}</label>
-            <select className="m-2" required>
+            <select className="m-2" name={item.label} required onChange={(e)=>onChange(item.label, e.target.value)}>
               <option value="">Choose {item.label}</option>
               {item.option.map((option, index) => {
                 // 判斷 option 是否為陣列
