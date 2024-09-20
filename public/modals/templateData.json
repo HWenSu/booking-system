@@ -1,0 +1,51 @@
+[ 
+{
+  "category": "ServiceDropdown" ,
+  "Data": [ 
+{ "label": "Service", "option": [ 1, 2, 3 ]  }, 
+{ "label": "Duration", "option": [ [60], [60, 90], [90, 120]] } 
+]
+},
+{
+  "category": "GenderDropdown",
+  "Data": [ { "label": "Gender", "option": [ 
+  {"id":1, "name": "女"},  
+  {"id":2, "name": "其他"} 
+] 
+  } 
+]
+},
+{
+  "category": "StaffDropdown",
+  "Data": [ { "label": "Staff",   "option": [ {"id":1, "name": "aaa"},  {"id":2, "name": "bbb"} ] } ] 
+},
+ {
+  "category": "TimePicker",
+  "Data": [ { "label": "" } ]
+}
+,
+{
+  "category": "ChangePage",
+  "Data": [ { "label": ">>" ,"type": ["forward", "backward"] } ]
+},
+{
+  "category": "Input",
+  "Data":  [ { "label": "name", "type": "text" } ],
+  "name": "name"
+} ,
+{
+  "category": "Input",
+  "Data":  [ { "label": "phone", "type": "number"  } ],
+  "name": "phone"
+} ,
+ {
+  "category": "Input" ,
+  "Data": [ { "label": "e-mail", "type": "email" } ],
+  "name": "email"
+},
+ {
+  "category": "Input",
+  "Data": [ { "label": "remark", "type": "text" } ],
+  "name": "remark"
+}
+]

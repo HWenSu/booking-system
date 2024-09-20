@@ -1,9 +1,24 @@
 import { useState, useEffect } from "react";
-import BookingTimeStamp from "../components/BookingTimeStamp";
-import BookingInfo from "../components/BookingInfo";
-import BookingDropdown from "../components/BookingDropdown";
-import axios from 'axios'
+
+import ServiceDropdown from "../components/ServiceDropdown";
+import GenderDropdown from "../components/GenderDropdown";
+import StaffDropdown from "../components/StaffDropdown";
+import TimePicker from "../components/TimePicker";
+import ChangePage from "../components/ChangePage";
+import InputField from "../components/InputField";
+
+
 import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
+
+// 定義组件
+const componentMap = {
+  ServiceDropdown: ServiceDropdown,
+  GenderDropdown: GenderDropdown,
+  StaffDropdown: StaffDropdown,
+  TimePicker: TimePicker,
+  ChangePage: ChangePage,
+  Input: InputField,
+};
 
 const Booking = () => {
   //儲存表單資料
@@ -33,28 +48,32 @@ const Booking = () => {
     "/modals/staffData.json"
   );
 
-  useEffect(() => {
-    //監聽 formData.gender 來過濾 Staff 名單
-    if (staffData && staffData.staff) {
-      const filteredStaff = formData.gender
-        ? staffData.staff.filter((staff) => staff.gender === formData.gender)
-        : staffData.staff;
-      setFilteredStaff(filteredStaff);
-    } else {
-      setFilteredStaff([]); // 如果 staff　不在，設置為空陣列，防止錯誤
-    }
-    //監聽formData.service 來過濾 duration 名單
-    if (serviceData && serviceData.services) {
-      const filterService = formData.service
-        ? serviceData.services.filter(
-            (service) => service.name === formData.service
-          )
-        : serviceData.services;
-      setFilterServices(filterService);
-    } else {
-      setFilterServices([]);
-    }
-  }, [staffData, formData.gender, serviceData, formData.service]);
+  const { data: templateData, error: templateError } = useAPIService(
+    "/modals/templateData.json"
+  );
+
+  // useEffect(() => {
+  //   //監聽 formData.gender 來過濾 Staff 名單
+  //   if (staffData && staffData.staff) {
+  //     const filteredStaff = formData.gender
+  //       ? staffData.staff.filter((staff) => staff.gender === formData.gender)
+  //       : staffData.staff;
+  //     setFilteredStaff(filteredStaff);
+  //   } else {
+  //     setFilteredStaff([]); // 如果 staff　不在，設置為空陣列，防止錯誤
+  //   }
+  //   //監聽formData.service 來過濾 duration 名單
+  //   if (serviceData && serviceData.services) {
+  //     const filterService = formData.service
+  //       ? serviceData.services.filter(
+  //           (service) => service.name === formData.service
+  //         )
+  //       : serviceData.services;
+  //     setFilterServices(filterService);
+  //   } else {
+  //     setFilterServices([]);
+  //   }
+  // }, [staffData, formData.gender, serviceData, formData.service]);
 
   //檢查API資料是否獲取成功
   if (!serviceData || !staffData) return <div>Loading</div>;
@@ -82,15 +101,6 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); //防止頁面重新整理
 
-    // try {
-    //   const response = await axios.post(
-    //     "http://localhost:3000/miumiu-spa/orders",
-    //     formData,
-    //     {
-    //       headers: { "Content-Type": "application/json" },
-    //     }
-    //   );
-
     console.log("Form submitted successfully:", formData);
 
     //清空表單資料
@@ -105,46 +115,30 @@ const Booking = () => {
       email: "",
       remark: "",
     });
-
-    // } catch (error) {
-    //   console.log("Error submitting form:", error);
-    // }
   };
 
-  //處理下一步按鈕的函式
-  const handleNext = () => {
-    setIsHidden(true);
-  };
-  //處理上一步按鈕的函式
-  const handleBack = () => {
-    setIsHidden(false);
-  };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col m-4">
-      <h2>BOOKING</h2>
+      <h2>Booking</h2>
       <div className={isHidden ? "hidden" : "block"}>
-        <BookingDropdown
-          serviceData={serviceData.services}
-          filterService={filterServices}
-          staffData={staffData.staff}
-          filteredStaff={filteredStaff}
-          onChange={handleChange}
-        />
-        <BookingTimeStamp
-          duration={formData.duration}
-          onTimeChange={handleTimeChange}
-        />
-        <button onClick={handleNext}>Next</button>
-      </div>
-
-      <div className={isHidden ? "block" : "hidden"}>
-        <BookingInfo handleChange={handleChange} />
-        <button onClick={handleBack}>Back</button>
-        <button type="submit">Submit</button>
+        {/* //渲染模板 */}
+        {templateData.map((item, index) => {
+          const Component = componentMap[item.category]
+          {
+            console.log(item.Data);
+          }
+          return (
+            <Component
+              key={index}
+              data={item.Data}
+              // onChange={onChange}
+            />
+          )
+        })}
       </div>
     </form>
   );
-}
+};
 
-export default Booking
+export default Booking;
