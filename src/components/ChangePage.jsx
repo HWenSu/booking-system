@@ -1,9 +1,11 @@
-import React from 'react'
-
-const ChangePage = () => {
+const ChangePage = ({ changePageString, onChangePage }) => {
   return (
-    <div>ChangePage</div>
-  )
-}
+    <div>
+      <button onClick={onChangePage} state={changePageString}>
+        {changePageString}
+      </button>
+    </div>
+  );
+};
 
 export default ChangePage

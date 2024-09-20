@@ -1,8 +1,8 @@
 import React from 'react'
 
-const GenderDropdown = ( {data} ) => {
+const GenderDropdown = ({ data, isHidden }) => {
   return (
-    <div>
+    <div className={isHidden ? "hidden" : "block"}>
       <label>{data[0].label}</label>
       <select className="m-2">
         <option value="">Choose {data[0].label}</option>
@@ -13,6 +13,6 @@ const GenderDropdown = ( {data} ) => {
       </select>
     </div>
   );
-}
+};
 
 export default GenderDropdown
