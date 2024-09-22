@@ -92,12 +92,13 @@ const Booking = () => {
 
     //清空表單資料
     setFormData({
-      service: "",
+      Service: "",
+      Duration: "",
+      Gender: "",
+      Staff: "",
       startTime: "",
       endTime: "",
-      staff: "",
       name: "",
-      gender: "",
       phone: "",
       email: "",
       remark: "",
