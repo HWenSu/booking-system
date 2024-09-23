@@ -14,23 +14,23 @@ const TimePicker = ({ duration, onTimeChange, isHidden }) => {
     onTimeChange(formattedDate, formattedEndDate)
   }
   return (
-    <div>
-      <p>Booking Time</p>
-      { duration?(
       <div className={isHidden ? "hidden" : "block"}>
-        <DatePicker
-          selected={startDate}
-          onChange={handleChange}
-          showTimeSelect
-          timeFormat="HH:mm"
-          timeIntervals={duration}
-          timeCaption="time"
-          dateFormat=" yyyy/ MM/ dd, h:mm aa"
-          className="m-2"
-        />
+        <p>Booking Time</p>
+        {duration ? (
+          <DatePicker
+            selected={startDate}
+            onChange={handleChange}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={duration}
+            timeCaption="time"
+            dateFormat=" yyyy/ MM/ dd, h:mm aa"
+            className="m-2"
+          />
+        ) : (
+          <p> Please choose service and duration first</p>
+        )}
       </div>
-      ) : (<p> Please choose service and duration first</p>) }
-    </div>
   );
 };
 
