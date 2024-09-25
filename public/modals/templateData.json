@@ -26,7 +26,7 @@
 ,
 {
   "category": "ChangePage",
-  "Data": [ { "label": ">>" ,"type": ["forward", "backward"] } ]
+  "Data": [ { "label": ">>" ,"type": ["Back", "Next"] } ]
 },
 {
   "category": "Input",
@@ -47,5 +47,23 @@
   "category": "Input",
   "Data": [ { "label": "remark", "type": "text" } ],
   "name": "remark"
+},
+{
+  "category": "ChangePage",
+  "Data": [ { "label": ">>" ,"type": ["Back", "Next"] } ]
+},
+ {
+  "category": "Input" ,
+  "Data": [ { "label": "e-mail", "type": "email" } ],
+  "name": "email"
+},
+ {
+  "category": "Input",
+  "Data": [ { "label": "remark", "type": "text" } ],
+  "name": "remark"
+},
+{
+  "category": "ChangePage",
+  "Data": [ { "label": ">>" ,"type": ["Back", "Next"] } ]
 }
 ]

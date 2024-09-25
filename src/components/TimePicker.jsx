@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addMinutes, format } from "date-fns";
 
-const TimePicker = ({ duration, onTimeChange, isHidden }) => {
+const TimePicker = ({ duration, onTimeChange }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = (date) => {
@@ -14,7 +14,7 @@ const TimePicker = ({ duration, onTimeChange, isHidden }) => {
     onTimeChange(formattedDate, formattedEndDate)
   }
   return (
-      <div className={isHidden ? "hidden" : "block"}>
+      <div className="">
         <p>Booking Time</p>
         {duration ? (
           <DatePicker

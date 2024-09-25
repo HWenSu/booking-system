@@ -37,7 +37,7 @@ const ServiceDropdown = ({ data, onChange }) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       {/* Service下拉選單 */}
       <label>
         {serviceData[0].label}

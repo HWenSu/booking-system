@@ -1,10 +1,9 @@
-const StaffDropdown = ( {data, isHidden, onChange} ) => {
-  {console.log(data)}
+const StaffDropdown = ( {data, onChange} ) => {
   return (
-    <div className={isHidden ? "hidden" : "block"}>
+    <div className="">
       <label>{data[0].label}</label>
       <select
-        className="m-2"
+        className=""
         name={data[0].label}
         onChange={(e) => onChange(data[0].label, e.target.value)}
       >
