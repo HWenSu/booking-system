@@ -141,9 +141,10 @@ const Booking = () => {
           }
         })}
       </div>
-      <button onClick={handleSubmit} className="">
+      {currentPage === slicedDataArr.length&& (<button onClick={handleSubmit} className="">
         Submit
-      </button>
+      </button> )}
+
     </form>
   );
 }
