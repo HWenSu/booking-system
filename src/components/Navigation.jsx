@@ -1,8 +1,8 @@
-// import React from 'react'
 import { Link } from "react-router-dom";
 import logo from "/public/modals/images/logo.png"
 
 const Navigation = () => {
+
   return (
     <div>
       <nav>

@@ -8,7 +8,6 @@
   margin: 0 auto;
   text-align: center;
   background:linear-gradient(to right top, #f6f0e5, #dacfbe, #f8f3eb, #f8f4ee, #f9f6f1);
-
   --primary-color: #e7e1d9;
   --secondary-color: #b1937c;
   --tertiary-color:#b4a69c;
@@ -17,6 +16,30 @@
   body {
     @apply font-outfit
   }
+   
+  /* 主題 */
+  .theme-mudstone {
+    --primary-color: #e7e1d9;
+    --secondary-color: #b1937c;
+    --tertiary-color:#b4a69c;
+    --hightLight:#615246 ;
+  }
+
+  .theme-modern {
+    --primary-color: #e0e0e0;
+    --secondary-color: #bfbfbf;
+    --tertiary-color:#616161;
+    --hightLight:#323232 ;
+  }
+
+  /* 文字顏色  */
+  .text-tertiary {
+    color: var(--tertiary-color);
+  }
+  .text-
+
+
+
   .link-hover {
     color: var(--secondary-color);
     scale: 1.05;
