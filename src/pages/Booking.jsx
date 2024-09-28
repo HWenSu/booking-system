@@ -1,4 +1,5 @@
 import { useState }from "react";
+import { useTheme } from "../context/ThemeContext";
 
 import ServiceDropdown from "../components/ServiceDropdown";
 import GenderDropdown from "../components/GenderDropdown";
@@ -20,6 +21,10 @@ const componentMap = {
 };
 
 const Booking = () => {
+
+  //獲取主題
+  const { currentTheme } = useTheme();
+
   //儲存表單資料
   const [formData, setFormData] = useState({
     Service: "",
@@ -117,7 +122,7 @@ const Booking = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col m-8">
+    <form onSubmit={handleSubmit} className={`flex flex-col m-8 theme-${currentTheme}`}>
       <h2 className="text-tertiary font-semibold text-[3rem] animate-fade-in-title">
         Booking
       </h2>

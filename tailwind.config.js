@@ -18,17 +18,21 @@ export default {
       },
       animation: {
         "fade-in-up": "fadeInUp 0.5s ease-out",
-        "fade-in-title": "fadeInUp 1s ease-in-out"
+        "fade-in-title": "fadeInUp 1s ease-in-out",
       },
       backgroundSize: {
-        'auto': 'auto',
-        'cover': 'cover',
-        'contain': 'contain',
-        '50%': '50%',
-        '16': '4rem',
+        auto: "auto",
+        cover: "cover",
+        contain: "contain",
+        "50%": "50%",
+        16: "4rem",
       },
-    
     },
   },
+  safelist: [
+    {
+      pattern: /theme-(modern|classic|mudstone)/,
+    },
+  ],
   plugins: [],
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from '../context/ThemeContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPagelines } from "@fortawesome/free-brands-svg-icons";
@@ -6,11 +6,8 @@ import ServiceModal from "../components/ServiceModal";
 import useAPIService from '../components/hooks/useAPIService';
 
 const Service = () => {
-  // 獲取現在主題
-  const themeContext = useTheme()
-  console.log(themeContext)
-  const {currentTheme} = useTheme()
-
+  const { currentTheme, setCurrentTheme } = useTheme();
+  
   // 獲取 API 資料
   const { data, error } = useAPIService(
     'http://localhost:5000/service'
