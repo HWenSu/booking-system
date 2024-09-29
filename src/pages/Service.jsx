@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useTheme } from '../context/ThemeContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPagelines } from "@fortawesome/free-brands-svg-icons";
 import ServiceModal from "../components/ServiceModal";
 import useAPIService from '../components/hooks/useAPIService';
 
 const Service = () => {
-  const { currentTheme, setCurrentTheme } = useTheme();
-  
+
   // 獲取 API 資料
   const { data, error } = useAPIService(
     'http://localhost:5000/service'
@@ -20,9 +18,9 @@ const Service = () => {
   if (error) return <div>Error: {error.message}</div>
   if (!data) return <div>Loading...</div>; 
   return (
-    <div className={`my-8 theme-${currentTheme}`}>
+    <div className="my-8">
       <div className="my-10">
-        <h2 className="text-tertiary font-semibold text-[3rem] animate-fade-in-title">
+        <h2 className="font-semibold text-[3rem] animate-fade-in-title">
           OUR SERVICE
         </h2>
         <FontAwesomeIcon
@@ -31,7 +29,7 @@ const Service = () => {
           size="2xl"
           className="my-8"
         />
-        <p className="text-tertiary text-[1.5rem]">
+        <p className="text-secondary text-[1.5rem]">
           Please check below for our services
         </p>
       </div>

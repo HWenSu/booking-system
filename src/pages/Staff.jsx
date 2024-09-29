@@ -9,7 +9,7 @@ const Staff = () => {
 
   return (
     <div className={`theme-${currentTheme}`}>
-      <ul className="flex flex-col w-[80vw]  mx-auto my-[8vh]">
+      <ul className="flex flex-col w-[80vw]  mx-auto py-[8vh]">
         {data &&
           data.map((s) => {
             return (

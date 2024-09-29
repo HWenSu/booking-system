@@ -6,7 +6,7 @@ const Navigation = () => {
   return (
     <div>
       <nav>
-        <ul className="flex bg-white/50 items-center justify-between h-28 bg-fixed">
+        <ul className="flex bg-tertiary items-center justify-between h-28 bg-fixed">
           <li className="basis-40">
             <Link to="/">
               <h1 className="min-w-40">
@@ -14,7 +14,7 @@ const Navigation = () => {
               </h1>
             </Link>
           </li>
-          <div className=" flex mr-[2rem] text-[1.4rem] text-tertiary ">
+          <div className=" flex mr-[2rem] text-[1.4rem]">
             <li className="hover:link-hover ">
               <Link to="/" className="p-4">
                 HOME

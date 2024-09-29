@@ -2,16 +2,26 @@
 import { Outlet } from "react-router-dom"
 import Navigation from "./components/Navigation"
 import Footer from "./components/Footer"
-import { ThemeProvider } from "./context/ThemeContext"
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+
 
 const Layout = () => {
   return (
-    <ThemeProvider>
-      <Navigation />
-      <Outlet />
-      <Footer />
-    </ThemeProvider>
+      <ThemeProvider>
+        <LayoutContent/>
+      </ThemeProvider>
   );
 }
+
+  const LayoutContent = () => {
+    const { currentTheme } = useTheme();
+    return (
+      <div className={`theme-${currentTheme} text-primary`}>
+        <Navigation />
+        <Outlet />
+        <Footer />
+      </div>
+    );
+  };
 
 export default Layout
