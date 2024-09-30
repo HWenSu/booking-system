@@ -119,14 +119,14 @@ const Booking = () => {
 
   return (
     <form onSubmit={handleSubmit} className={"flex flex-col p-8"}>
-      <h2 className="font-semibold text-[3rem] animate-fade-in-title">
+      <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-tertiary">
         Booking
       </h2>
-      <div>
+      <div className="text-lg">
         {/* //渲染模板 */}
         {slicedDataArr[currentPage - 1].map((item, index) => {
-          const Component = componentMap[item.category]
-          if(Component){
+          const Component = componentMap[item.category];
+          if (Component) {
             return (
               <Component
                 key={index}
@@ -142,10 +142,11 @@ const Booking = () => {
           }
         })}
       </div>
-      {currentPage === slicedDataArr.length&& (<button onClick={handleSubmit} className="">
-        Submit
-      </button> )}
-
+      {currentPage === slicedDataArr.length && (
+        <button onClick={handleSubmit} className="">
+          Submit
+        </button>
+      )}
     </form>
   );
 }

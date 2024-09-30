@@ -37,17 +37,18 @@ const ServiceDropdown = ({ data, onChange }) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       {/* Service下拉選單 */}
       <label>
         {serviceData[0].label}
         <select
           name={serviceData[0].label}
           onChange={handleServiceChange}
+          className="dropdown"
         >
-          <option value="" >Choose {serviceData[0].label}</option>
+          <option value="">Choose {serviceData[0].label}</option>
           {serviceData[0].option.map((service, index) => (
-            <option key={index} value={service} >
+            <option key={index} value={service}>
               {service}
             </option>
           ))}
@@ -57,11 +58,17 @@ const ServiceDropdown = ({ data, onChange }) => {
       {/* Duration下拉選單 */}
       <label>
         {durationData[0].label}
-        <select name={durationData.label} onChange={handleDurationChange}>
+        <select
+          name={durationData.label}
+          onChange={handleDurationChange}
+          className="dropdown"
+        >
           <option value="">Choose {durationData[0].label}</option>
           //渲染出 service 對應的duration
           {filteredDuration.map((duration, index) => (
-            <option key={index} value={duration}>{duration}</option>
+            <option key={index} value={duration}>
+              {duration}
+            </option>
           ))}
         </select>
       </label>

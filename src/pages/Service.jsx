@@ -20,7 +20,7 @@ const Service = () => {
   return (
     <div className="my-8">
       <div className="my-10">
-        <h2 className="font-semibold text-[3rem] animate-fade-in-title">
+        <h2 className="text-tertiary font-semibold text-[3rem] animate-fade-in-title">
           OUR SERVICE
         </h2>
         <FontAwesomeIcon
@@ -29,7 +29,7 @@ const Service = () => {
           size="2xl"
           className="my-8"
         />
-        <p className="text-secondary text-[1.5rem]">
+        <p className="text-tertiary text-[1.5rem]">
           Please check below for our services
         </p>
       </div>

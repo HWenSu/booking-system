@@ -1,14 +1,10 @@
 import useAPIService from '../components/hooks/useAPIService';
-import { useTheme } from '../context/ThemeContext';
 
 const Staff = () => {
-  // 獲取現在主題
-  const {currentTheme} = useTheme()
-
   const { data } = useAPIService("http://localhost:5000/staff");
 
   return (
-    <div className={`theme-${currentTheme}`}>
+    <div>
       <ul className="flex flex-col w-[80vw]  mx-auto py-[8vh]">
         {data &&
           data.map((s) => {
@@ -21,23 +17,23 @@ const Staff = () => {
                   style={{ backgroundImage: `url(${s.img})` }}
                   className={`w-[10rem] h-[10rem] rounded-full bg-[length:12rem] bg-no-repeat bg-left`}
                 ></div>
-                <div className="w-[40rem] text-tertiary">
-                  <div className="flex items-center">
-                    <h2 className="font-semibold text-[2rem] text-highLight mr-7">
+                <div className="w-[40rem]">
+                  <div className="flex items-center text-tertiary">
+                    <h2 className="font-semibold text-[2rem]  mr-7 text-highlight">
                       {s.name}
                     </h2>
                     <p>{s.gender}</p>
                   </div>
 
                   <div className="flex my-4">
-                    <h3 className="mr-3 p-2 rounded-full bg-primary">
+                    <h3 className="mr-3 p-2 rounded-full bg-tertiary text-primary ">
                       {s.expertise}
                     </h3>
                   </div>
-                  <div className="flex bg-white rounded-full opacity-50 p-5">
+                  <div className="flex bg-white rounded-full p-5">
                     {s.certificates.map((certificate, index) => {
                       return (
-                        <h3 key={index} className="mr-5">
+                        <h3 key={index} className="mr-5 text-highlight">
                           {" "}
                           {certificate}
                         </h3>

@@ -5,7 +5,7 @@ const GenderDropdown = ({ data, isHidden, onChange }) => {
     <div className="">
       <label>{data[0].label}</label>
       <select
-        className=""
+        className="dropdown"
         name={data[0].label}
         onChange={(e) => onChange(data[0].label, e.target.value)}
       >
