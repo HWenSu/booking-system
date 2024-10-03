@@ -18,7 +18,7 @@
     --primary-color: #242424;
     --secondary-color: #ffffff47;
     --tertiary-color:#a2b6fb38;
-    --highlight:#2041e7c1 ;
+    --highlight:#575fd7 ;
     font-family:"Ubuntu", "Chocolate Classical Sans", sans-serif;
     background: 
       radial-gradient(ellipse 60% 30% at 5% 80%,
@@ -38,7 +38,7 @@
       background-position: 0 50% ;
     }
     50% {
-      background-position: 100% 50%;
+      background-position: 80% 60%;
       
     }
     100% {
@@ -71,7 +71,7 @@
     }
 
   .theme-modern .dropdown{
-      @apply mb-6 w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none 
+      @apply mb-6 w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
     }
 
   .theme-classic .dropdown{
@@ -80,9 +80,24 @@
 
   /* input 填寫表單 */
   .input{
-      @apply rounded-lg bg-tertiary outline-none px-2
+      @apply rounded-lg bg-tertiary outline-none px-2 text-highlight
     }
 
+  .changePageBtn {
+    @apply bg-tertiary rounded-full w-20 h-10 m-4 text-highlight 
+  }
+
+  .submitBtn {
+    @apply bg-highlight text-secondary w-[8rem] h-12 rounded-full m-4 text-lg 
+  }
+
+  .submitBtn:hover {
+    @apply text-white scale-105 transition duration-300 ease-in-out
+  }
+
+  .submitBtn:focus {
+    @apply animate-bounce
+  }
 
   .link-hover {
     @apply text-highlight scale-110 transition duration-150 ease-in-out}
@@ -108,6 +123,14 @@
 
   .bounce2 {
   animation: bounce2 1.8s ease-in-out infinite;
+  }
+
+  .modalBg {
+    @apply fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40
+  }
+
+  .modalPanel {
+    @apply relative bg-white w-[50rem] p-7 rounded-[30px] z-50 animate-fade-in-up opacity-80
   }
   
   @keyframes bounce2 {

@@ -8,6 +8,7 @@ import ChangePage from "../components/ChangePage";
 import InputField from "../components/InputField";
 
 import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
+import SubmitButton from "../components/SubmitButton";
 
 // 定義组件
 const componentMap = {
@@ -29,10 +30,10 @@ const Booking = () => {
     Staff: "",
     startTime: "",
     endTime: "",
-    name: "",
-    phone: "",
-    email: "",
-    remark: "",
+    Name: "",
+    Phone: "",
+    Email: "",
+    Remark: "",
   });
 
   // 儲存頁面狀態
@@ -76,9 +77,6 @@ const Booking = () => {
     }
   }
 
-  console.log(currentPage);
-  console.log(slicedDataArr.length)
-
   // 處理表單變化
   const handleChange = (name, value) => {
     setFormData((preFormData) => ({
@@ -110,15 +108,15 @@ const Booking = () => {
       Staff: "",
       startTime: "",
       endTime: "",
-      name: "",
-      phone: "",
-      email: "",
-      remark: "",
+      Name: "",
+      Phone: "",
+      Email: "",
+      Remark: "",
     });
   };
 
   return (
-    <form onSubmit={handleSubmit} className={"flex flex-col p-8"}>
+    <form onSubmit={handleSubmit} className={"flex-col p-8"}>
       <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-highlight">
         Booking
       </h2>
@@ -143,9 +141,7 @@ const Booking = () => {
         })}
       </div>
       {currentPage === slicedDataArr.length && (
-        <button onClick={handleSubmit} className="">
-          Submit
-        </button>
+        <SubmitButton onClick={handleSubmit}  formData={formData}/>
       )}
     </form>
   );

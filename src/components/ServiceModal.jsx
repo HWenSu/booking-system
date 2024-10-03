@@ -9,8 +9,8 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, p
   // }
   
   return (
-    <div className="  fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40">
-      <div className="relative bg-white w-[50rem] p-7 rounded-[30px] z-50 animate-fade-in-up opacity-80">
+    <div className="modalBg">
+      <div className="modalPanel">
         <h2 className="text-[3rem]">{title}</h2>
         <p className="p-2">{description}</p>
         <div className="flex items-center justify-around">

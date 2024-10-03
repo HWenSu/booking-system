@@ -25,7 +25,7 @@ const TimePicker = ({ duration, onTimeChange }) => {
             timeIntervals={duration}
             timeCaption="time"
             dateFormat=" yyyy/ MM/ dd, h:mm aa"
-            className="m-2"
+            className="m-2 text-highlight"
           />
         ) : (
           <p> Please choose service and duration first</p>
