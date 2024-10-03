@@ -16,7 +16,7 @@ const Layout = () => {
   const LayoutContent = () => {
     const { currentTheme } = useTheme();
     return (
-      <div className={`theme-${currentTheme} text-tertiary`}>
+      <div className={`theme-${currentTheme} text-primary`}>
         <Navigation />
         <Outlet />
         <Footer />

@@ -119,7 +119,7 @@ const Booking = () => {
 
   return (
     <form onSubmit={handleSubmit} className={"flex flex-col p-8"}>
-      <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-tertiary">
+      <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-highlight">
         Booking
       </h2>
       <div className="text-lg">

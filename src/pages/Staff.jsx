@@ -18,22 +18,22 @@ const Staff = () => {
                   className={`w-[10rem] h-[10rem] rounded-full bg-[length:12rem] bg-no-repeat bg-left`}
                 ></div>
                 <div className="w-[40rem]">
-                  <div className="flex items-center text-tertiary">
-                    <h2 className="font-semibold text-[2rem]  mr-7 text-highlight">
+                  <div className="flex items-center">
+                    <h2 className="font-semibold text-[2rem]  mr-7 text-highlight ">
                       {s.name}
                     </h2>
                     <p>{s.gender}</p>
                   </div>
 
                   <div className="flex my-4">
-                    <h3 className="mr-3 p-2 rounded-full bg-tertiary text-primary ">
+                    <h3 className="mr-3 p-2 rounded-full bg-tertiary text-highlight ">
                       {s.expertise}
                     </h3>
                   </div>
-                  <div className="flex bg-white rounded-full p-5">
+                  <div className="flex bg-white/70 rounded-full p-5">
                     {s.certificates.map((certificate, index) => {
                       return (
-                        <h3 key={index} className="mr-5 text-highlight">
+                        <h3 key={index} className="mr-5">
                           {" "}
                           {certificate}
                         </h3>

@@ -6,35 +6,57 @@
    
   /* 主題 */
   .theme-mudstone {
-    --primary-color: #f3edea;
+    --primary-color: #72655e;
     --secondary-color: #ebe5e0;
-    --tertiary-color:#b1a59d;
+    --tertiary-color:#e2d9d3;
     --highlight:#a89a93 ;
     background: #f4f1ee;
     font-family: "Outfit", "sans-serif";
 }
 
   .theme-modern {
-    --primary-color: #dbdbdb;
-    --secondary-color: #bababa47;
-    --tertiary-color:#282828;
+    --primary-color: #242424;
+    --secondary-color: #ffffff47;
+    --tertiary-color:#a2b6fb38;
+    --highlight:#2041e7c1 ;
+    font-family:"Ubuntu", "Chocolate Classical Sans", sans-serif;
+    background: 
+      radial-gradient(ellipse 60% 30% at 5% 80%,
+      rgba(93, 107, 255, 0.647), rgba(232, 240, 148, 0)),
+      radial-gradient(ellipse 60% 20% at 70% 25%,
+      rgba(110, 149, 255, 0.775), rgba(232, 240, 148, 0)),
+      radial-gradient(ellipse 20% 20% at center,
+      rgba(248, 110, 255, 0.267), rgba(232, 240, 148, 0));
+      /* clip-path: polygon(20% 10%, 80% 20%, 90% 70%, 40% 90%, 10% 50%); */
+      background-size: 200% 200%;
+    background-position:0 0;
+    animation: gradientChange 8s infinite linear;
+  }
+
+  @keyframes gradientChange {
+    0% {
+      background-position: 0 50% ;
+    }
+    50% {
+      background-position: 100% 50%;
+      
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .theme-classic {
+    --primary-color: #505050;
+    --secondary-color: #c9c9c930;
+    --tertiary-color:#d5d5d5;
     --highlight:#3d3d3d ;
     background: #e9e9e9;
     font-family: "EB Garamond", "Noto Serif HK", serif;
   }
 
-  .theme-classic {
-    --primary-color: #e0e0e0;
-    --secondary-color: #bfbfbf;
-    --tertiary-color:#454545;
-    --highlight:#606060 ;
-  }
-
   :root {
-  max-width: 1980px;
-  margin: 0 auto;
   text-align: center;
-  
   }
 
   ::selection {
@@ -43,20 +65,27 @@
   }
 
   @layer base {
+  /* 對應樣式的下拉選單樣式 */
   .theme-mudstone .dropdown{
       @apply mb-5 rounded-full w-40 m-2 appearance-none bg-white px-1 outline-none
     }
 
   .theme-modern .dropdown{
+      @apply mb-6 w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none 
+    }
+
+  .theme-classic .dropdown{
       @apply mb-6 w-40 mx-4 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
+    }  
+
+  /* input 填寫表單 */
+  .input{
+      @apply rounded-lg bg-tertiary outline-none px-2
     }
 
 
   .link-hover {
-    color: var(--tertiary-color);
-    scale: 1.05;
-    transition: 0.2s ease-in-out;
-  }
+    @apply text-highlight scale-110 transition duration-150 ease-in-out}
 
   .hover {
     transition: 0.2s ease-in-out;
