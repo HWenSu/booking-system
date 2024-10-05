@@ -1,4 +1,5 @@
 import { useState }from "react";
+import { useForm } from "react-hook-form";
 
 import ServiceDropdown from "../components/ServiceDropdown";
 import GenderDropdown from "../components/GenderDropdown";
@@ -22,24 +23,21 @@ const componentMap = {
 
 const Booking = () => {
 
-  //儲存表單資料
-  const [formData, setFormData] = useState({
-    Service: "",
-    Duration: "",
-    Gender: "",
-    Staff: "",
-    startTime: "",
-    endTime: "",
-    Name: "",
-    Phone: "",
-    Email: "",
-    Remark: "",
-  });
+  // 用 React Hook Form 管理表單
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    trigger,
+    formState: { errors },
+    reset,
+  } = useForm();
+
 
   // 儲存頁面狀態
   const [ currentPage, setCurrentPage ] = useState(1)
-
-
+  
  // 獲取模板資料
   const { data: templateData, error: templateError } = useAPIService(
     "/modals/templateData.json"
@@ -69,7 +67,13 @@ const Booking = () => {
   }
 
   // 處理跳頁變化
-  const handleClick = (type) => {
+  const handleClick = async (type) => {
+    //驗證表單是否正確填入
+    const valid = await trigger()
+    if(!valid) {
+      return // 阻止換頁
+    }
+
     if (type === 'Next' ){
       setCurrentPage(currentPage + 1);
     } else {
@@ -77,46 +81,17 @@ const Booking = () => {
     }
   }
 
-  // 處理表單變化
-  const handleChange = (name, value) => {
-    setFormData((preFormData) => ({
-      ...preFormData,
-      [name]: value,
-    }));
-  };
-
-  //處理時間改變函式
-  const handleTimeChange = (date, endDate) => {
-    setFormData((preFormData) => ({
-      ...preFormData,
-      startTime: date,
-      endTime: endDate,
-    }));
-  };
-
-
   //處理表單提交
-  const handleSubmit = (e) => {
-    e.preventDefault(); //防止頁面重新整理
-    console.log("Form submitted successfully:", formData);
+  const onSubmit = (data) => {
+    
+    console.log('Form submitted successfully:', data)
+    console.log(watch())
+    reset() //重置表單
+  }
 
-    //清空表單資料
-    setFormData({
-      Service: "",
-      Duration: "",
-      Gender: "",
-      Staff: "",
-      startTime: "",
-      endTime: "",
-      Name: "",
-      Phone: "",
-      Email: "",
-      Remark: "",
-    });
-  };
 
   return (
-    <form onSubmit={handleSubmit} className={"flex-col p-8"}>
+    <form className={"flex-col p-8"} onSubmit={handleSubmit(onSubmit)}>
       <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-highlight">
         Booking
       </h2>
@@ -129,10 +104,13 @@ const Booking = () => {
               <Component
                 key={index}
                 data={item.Data}
-                onChange={handleChange}
-                onTimeChange={handleTimeChange}
+                // onChange={handleChange}
+                register={register} // 將React Hook Form 的 register 傳給子组件
+                // onTimeChange={handleTimeChange}
+                errors={errors} // 傳遞驗證錯誤
                 onClick={handleClick}
-                duration={formData.Duration}
+                setValue={setValue}
+                duration={watch("Duration")}
                 currentPage={currentPage}
                 pagesLength={slicedDataArr.length}
               />
@@ -141,7 +119,7 @@ const Booking = () => {
         })}
       </div>
       {currentPage === slicedDataArr.length && (
-        <SubmitButton onClick={handleSubmit}  formData={formData}/>
+        <SubmitButton formData={watch()}/>
       )}
     </form>
   );

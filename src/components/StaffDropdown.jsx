@@ -1,13 +1,11 @@
-const StaffDropdown = ( {data, onChange} ) => {
+const StaffDropdown = ( {data, errors, register} ) => {
+  const label = data[0].label;
+  const isRequired = data[0].required
   return (
     <div className="">
-      <label>{data[0].label}</label>
-      <select
-        className="dropdown"
-        name={data[0].label}
-        onChange={(e) => onChange(data[0].label, e.target.value)}
-      >
-        <option value="">Choose {data[0].label}</option>
+      <label>{label}</label>
+      <select className="dropdown" name={label} {...register(label, {required: isRequired? `${label} is required`: false})}>
+        <option value="">Choose {label}</option>
         {data[0] &&
           data[0].option.map((option, index) => (
             <option key={index} value={option.name}>
@@ -16,6 +14,7 @@ const StaffDropdown = ( {data, onChange} ) => {
             </option>
           ))}
       </select>
+      {errors[label] && <p> {errors[label].message} </p>}
     </div>
   );
 }

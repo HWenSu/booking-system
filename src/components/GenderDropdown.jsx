@@ -1,13 +1,18 @@
-import React from 'react'
 
-const GenderDropdown = ({ data, isHidden, onChange }) => {
+
+
+const GenderDropdown = ({ data, errors, register }) => {
+  const label = data[0].label
+  const isRequired = data[0].required
   return (
     <div className="">
-      <label>{data[0].label}</label>
+      <label>{label}</label>
       <select
         className="dropdown"
-        name={data[0].label}
-        onChange={(e) => onChange(data[0].label, e.target.value)}
+        name={label}
+        {...register(label, {
+          required: isRequired ? `${label} is required` : false,
+        })}
       >
         <option value="">Choose {data[0].label}</option>
         {data[0] &&
@@ -18,6 +23,9 @@ const GenderDropdown = ({ data, isHidden, onChange }) => {
             </option>
           ))}
       </select>
+      {errors[label] && (
+        <p className="">{errors[label].message}</p>
+      )}
     </div>
   );
 };
