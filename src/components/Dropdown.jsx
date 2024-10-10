@@ -3,7 +3,6 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
   const isRequired = data[0].required;
 
   // 用 watch 監聽 selectedId 的變化
-  const selectedId = watch(`${label}_id`)
   const serviceId = watch("Service_id")
   const genderId = watch("Gender_id")
 
@@ -48,12 +47,11 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
               </option> )
             } else if 
              (label === 'Duration' && option.id === Number(serviceId)) {
-               //當選項是一個陣列時
                return option.name.map((item, arrIndex) => (
                  <option key={`${index}-${arrIndex}`} value={item}>
                    {item}
                  </option>
-               ));
+               ))
              } else if (label === "Staff" && option.id === Number(genderId)) {
                    return option.name.map((item, arrIndex) => (
                   <option key={`${index}-${arrIndex}`} value={item}>
