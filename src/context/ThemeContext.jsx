@@ -5,7 +5,7 @@ const ThemeContext = createContext()
 
 //創建主題 Provider 並設定 value 為當前主題和更新的主題 
 export const ThemeProvider = ({children})=> {
-  const [currentTheme, setCurrentTheme] = useState("modern");
+  const [currentTheme, setCurrentTheme] = useState("mudstone");
 
   return (
     <ThemeContext.Provider value={{currentTheme, setCurrentTheme}}>

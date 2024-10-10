@@ -51,19 +51,5 @@
 {
   "category": "ChangePage",
   "Data": [ { "label": ">>" ,"type": ["Back", "Next"] } ]
-},
- {
-  "category": "Input" ,
-  "Data": [ { "label": "Address", "type": "text" ,  "required": false} ],
-  "name": "Address"
-},
- {
-  "category": "Input",
-  "Data": [ { "label": "Address2", "type": "text", "required": false} ],
-  "name": "Address2"
-},
-{
-  "category": "ChangePage",
-  "Data": [ { "label": ">>" ,"type": ["Back", "Next"] } ]
 }
 ]
