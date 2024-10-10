@@ -1,24 +1,20 @@
 import { useEffect, useState }from "react";
 import { useForm } from "react-hook-form";
 
-import ServiceDropdown from "../components/ServiceDropdown";
-import GenderDropdown from "../components/GenderDropdown";
-import StaffDropdown from "../components/StaffDropdown";
 import TimePicker from "../components/TimePicker";
 import ChangePage from "../components/ChangePage";
 import InputField from "../components/InputField";
+import Dropdown from "../components/Dropdown";
 
 import useAPIService from "../components/hooks/useAPIService"; //獲取API的通用 HOOK
 import SubmitButton from "../components/SubmitButton";
 
 // 定義组件
 const componentMap = {
-  ServiceDropdown: ServiceDropdown,
-  GenderDropdown: GenderDropdown,
-  StaffDropdown: StaffDropdown,
   TimePicker: TimePicker,
   ChangePage: ChangePage,
   Input: InputField,
+  Dropdown: Dropdown,
 };
 
 const Booking = () => {
@@ -90,6 +86,7 @@ const Booking = () => {
     console.log(watch());
     reset(); //重置表單
   };
+  console.log(watch())
 
   return (
     <form className={"flex-col p-8"} onSubmit={handleSubmit(onSubmit)}>
@@ -99,7 +96,6 @@ const Booking = () => {
       <div className="text-lg">
         {/* //渲染模板 */}
         {slicedDataArr[currentPage - 1].map((item, index) => {
-          console.log(item);
           const Component = componentMap[item.category];
           if (Component) {
             return (
@@ -116,6 +112,7 @@ const Booking = () => {
                 currentPage={currentPage}
                 pagesLength={slicedDataArr.length}
                 prefix={`page${currentPage}`}
+                watch={watch}
               />
             );
           }

@@ -1,24 +1,42 @@
 [ 
 {
-  "category": "ServiceDropdown" ,
+  "category": "Dropdown" ,
   "Data": [ 
-{ "label": "Service", "option": [ "Foot", "Body", "Head" ], "required": true }, 
-{ "label": "Duration", "option": [ [60], [60, 90], [90, 120]],  "required": true } 
+{ "label": "Service", 
+  "option": [ {"id":1,"name":"按摩"}, {"id":2,"name":"精油按摩"}, {"id":3,"name":"腳底按摩"  } ], 
+  "required": true }
 ]
 },
 {
-  "category": "GenderDropdown",
-  "Data": [ { "label": "Gender", "option": [ 
+  "category": "Dropdown",
+  "Data": [
+    { "label": "Duration", 
+    "option": [{"id":1,"name":[60]},{ "id":2,"name":[60, 90]}, {"id":3,"duration":[90, 120]}],  
+    "required": true } 
+  ]
+},
+{
+  "category": "Dropdown",
+  "Data": [ { "label": "Gender", 
+  "option": [ 
   {"id":1, "name": "女"},  
-  {"id":2, "name": "其他"} 
-],  "required": true
+  {"id":2, "name": "其他"}, 
+  {"id":3, "name": "男"}
+  ],  
+  "required": false
   } 
 ]
 },
 {
-  "category": "StaffDropdown",
-  "Data": [ { "label": "Staff",   "option": [ {"id":1, "name": "aaa"},  {"id":2, "name": "bbb"} ] ,  "required": true} ] 
-},
+  "category": "Dropdown",
+  "Data": [ { "label": "Staff", 
+  "option": [ 
+    {"id":1, "name": ["aaa", "bbb"]},  
+    {"id":2, "name": ["ccc"]},
+    {"id":3, "name": ["ddd"]} 
+   ] ,
+   "required": true
+}]},
  {
   "category": "TimePicker",
   "Data": [ { "label": "",  "required": true } ]
