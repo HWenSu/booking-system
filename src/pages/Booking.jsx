@@ -1,7 +1,7 @@
 import { useEffect, useState }from "react";
 import { useForm } from "react-hook-form";
 
-import TimePicker from "../components/TimePicker";
+import BookingTime from "../components/BookingTime";
 import ChangePage from "../components/ChangePage";
 import InputField from "../components/InputField";
 import Dropdown from "../components/Dropdown";
@@ -11,7 +11,7 @@ import SubmitButton from "../components/SubmitButton";
 
 // 定義组件
 const componentMap = {
-  TimePicker: TimePicker,
+  TimePicker: BookingTime,
   ChangePage: ChangePage,
   Input: InputField,
   Dropdown: Dropdown,
