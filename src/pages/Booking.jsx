@@ -63,15 +63,14 @@ const Booking = () => {
   }
 
   // 處理跳頁變化
-  const handleClick = async (type) => {
-    //驗證表單是否正確填入
-    const valid = await trigger();
-    if (!valid) {
-      console.log("Validation Errors:", errors)
-      return; // 阻止換頁
-    }
-
+  const handleClick =  async (type) => {
     if (type === "Next") {
+      //驗證表單是否正確填入
+      const valid = await trigger();
+      if (!valid) {
+      console.log("Validation Errors:", errors)
+      return; // 阻止送出
+    }
        console.log(watch());
       setCurrentPage(currentPage + 1);
     } else {
@@ -85,15 +84,14 @@ const Booking = () => {
     console.log("Form submitted successfully:", data);
     console.log(watch());
     reset(); //重置表單
-  };
-  console.log(watch())
+  console.log(watch()) } 
 
   return (
     <form className={"flex-col p-8"} onSubmit={handleSubmit(onSubmit)}>
       <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-highlight">
         Booking
       </h2>
-      <div className="text-lg">
+      <div className=" text-lg relative">
         {/* //渲染模板 */}
         {slicedDataArr[currentPage - 1].map((item, index) => {
           const Component = componentMap[item.category];
@@ -119,7 +117,7 @@ const Booking = () => {
         })}
       </div>
       {currentPage === slicedDataArr.length && (
-        <SubmitButton formData={watch()} />
+        <SubmitButton formData={watch()} trigger={trigger} />
       )}
     </form>
   );

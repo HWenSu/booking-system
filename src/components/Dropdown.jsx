@@ -63,7 +63,7 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
               }
             })}
       </select>
-      {errors[label] && <p className="">{errors[label].message}</p>}
+      {errors[label] && <p className="booking-required">{errors[label].message}</p>}
     </div>
   );
 };

@@ -43,7 +43,7 @@
 }]},
  {
   "category": "TimePicker",
-  "Data": [ { "label": "",  "required": true } ]
+  "Data": [ { "label": "",  "required": true, "availableDates": {"aaa": ["2024-11-10 13:00", "2024-11-12 14:00"], "bbb":["2024-11-14 15:00"]} } ]
 }
 ,
 {

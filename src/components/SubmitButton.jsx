@@ -1,11 +1,20 @@
 import { useState } from 'react'
 import SubmittedModal from './SubmittedModal';
 
-const SubmitButton = ({formData}) => {
+const SubmitButton = ({formData, trigger}) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   //設定為已提交
-  const handleSubmit = () => setIsSubmitted(true);
+  const handleSubmit = async () => {
+    //驗證表單是否正確填入
+    const valid = await trigger();
+    if (!valid) {
+    console.log("Validation Errors:", errors)
+    return; // 阻止送出
+    } else {
+      setIsSubmitted(true)
+    }}
+    
   console.log(formData)
   console.log(isSubmitted);
 
