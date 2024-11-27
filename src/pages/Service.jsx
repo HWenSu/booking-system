@@ -8,8 +8,11 @@ const Service = () => {
 
   // 獲取 API 資料
   const { data, error } = useAPIService(
-    'http://localhost:5000/service'
+    'http://localhost:5000/miumiu-spa/service'
   );
+  
+  console.log(data, error)
+
   const [ modalOpenIndex, setModalOpenIndex ] = useState(null)
 
   const openModal = (index) => setModalOpenIndex(index);
@@ -35,7 +38,10 @@ const Service = () => {
       <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
         {data &&
           data.map((service, index) => {
-            const imgURL = `${service.img}`;
+            const imgURL = `${
+              service.img ||
+              " ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"
+            }`;
             const title = `${service.name}`;
             return (
               <li key={index}>

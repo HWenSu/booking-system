@@ -6,7 +6,6 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
   const serviceId = watch("Service_id")
   const genderId = watch("Gender_id")
 
-  console.log(serviceId);
   // 處理選擇變更
   const handleSelectChange = (e) => {
     const selectedValue = e.target.value;
@@ -52,10 +51,10 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
                    {item}
                  </option>
                ))
-             } else if (label === "Staff" && option.id === Number(genderId)) {
+             } else if (label === "Staff" && option.gender_id === Number(genderId)) {
                    return option.name.map((item, arrIndex) => (
-                  <option key={`${index}-${arrIndex}`} value={item}>
-                    {item}
+                  <option key={`${index}-${arrIndex}`} value={item.name}>
+                    {item.name}
                   </option>
                 ))
               } else {

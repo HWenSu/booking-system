@@ -1,7 +1,8 @@
 import useAPIService from '../components/hooks/useAPIService';
 
 const Staff = () => {
-  const { data } = useAPIService("http://localhost:5000/staff");
+  const { data } = useAPIService("http://localhost:5000/miumiu-spa/staff");
+  console.log(data);
 
   return (
     <div>
@@ -14,7 +15,7 @@ const Staff = () => {
                 className="flex justify-around m-[2vh] p-4 bg-white/50 rounded-lg"
               >
                 <div
-                  style={{ backgroundImage: `url(${s.img})` }}
+                  style={{ backgroundImage: `url(${s.img ||" ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"})` }}
                   className={`w-[10rem] h-[10rem] rounded-full bg-[length:12rem] bg-no-repeat bg-left`}
                 ></div>
                 <div className="w-[40rem]">
@@ -35,7 +36,7 @@ const Staff = () => {
                       return (
                         <h3 key={index} className="mr-5">
                           {" "}
-                          {certificate}
+                          {certificate.name}
                         </h3>
                       );
                     })}

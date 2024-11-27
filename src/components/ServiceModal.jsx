@@ -23,7 +23,7 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, p
           <ul className="grid grid-cols-2 gap-2 text-primary">
             {console.log(duration)}
             {console.log(price)}
-            {duration &&
+            {/* {duration &&
               duration.map((min) => (
                 <li
                   key={min}
@@ -37,7 +37,7 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, duration, p
                     $ {price}
                   </button>
                 </li>
-              ))}
+              ))} */}
           </ul>
         </div>
         <button

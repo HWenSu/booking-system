@@ -1,6 +1,7 @@
 import { useEffect, useState }from "react";
 import { useForm } from "react-hook-form";
 
+
 import BookingTime from "../components/BookingTime";
 import ChangePage from "../components/ChangePage";
 import InputField from "../components/InputField";
@@ -20,7 +21,11 @@ const componentMap = {
 const Booking = () => {
   // 獲取模板資料
   const { data: templateData, error: templateError } = useAPIService(
-    "/modals/templateData.json"
+    "http://localhost:5000/miumiu-spa/template"
+  );
+
+  const { data: orderData, error: orderError } = useAPIService(
+    "http://localhost:5000/miumiu-spa/order"
   );
 
 
