@@ -20,6 +20,15 @@ const Service = () => {
 
   if (error) return <div>Error: {error.message}</div>
   if (!data) return <div>Loading...</div>; 
+
+// 使用 data.map() 將 massage_id 作為鍵，整個物件作為值，存入 Map
+// 使用 Array.from() 將 Map 的值轉換為陣列
+  const uniqueMassages = Array.from(
+    new Map(data.map((item) => [item.massage_id, item])).values()
+  )
+
+  console.log(uniqueMassages);
+
   return (
     <div className="my-8">
       <div className="my-10">
@@ -36,8 +45,8 @@ const Service = () => {
         </p>
       </div>
       <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
-        {data &&
-          data.map((service, index) => {
+        {uniqueMassages &&
+          uniqueMassages.map((service, index) => {
             const imgURL = `${
               service.img ||
               " ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"
@@ -76,6 +85,8 @@ const Service = () => {
                     duration={service.duration}
                     price={service.price}
                     imgURL={imgURL}
+                    data={data}
+                    selectedMassage_id = {service.massage_id}
                   />
                 )}
               </li>
