@@ -9,22 +9,43 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
   // 處理選擇變更
   const handleSelectChange = (e) => {
     const selectedValue = e.target.value;
+    console.log(data);
+
+    let optionId = null;
+    let selectedArr = []
+
     //尋找選中值的 option 資料
-    const optionIndex = data[0].option.findIndex(
-       (option) =>{ 
-        if(!Array.isArray(option.name)){
-          return  option.name === selectedValue
-        }}
-     );
-     // 更新選中的 id
-     if(optionIndex !== -1) {
-      const selectedOptionId = data[0].option[optionIndex].id;
-      setValue(`${label}_id`, selectedOptionId);      
-     } else {
-      //若沒選擇
-      setValue(`${label}_id`, null);
+    //先判斷資料結構中的name是否為陣列
+    if(!Array.isArray(data[0].option[0].name)){
+      selectedArr = data[0].option.filter(
+        (item) => item.name === selectedValue
+      );
+    } else {
+      //資料結構中的name為陣列，則需往下拆解取出最後層的陣列
+      const optionArr = data[0].option.filter(
+        (option) => option.gender_id === Number(genderId)
+      );
+      selectedArr = optionArr[0].name.filter(
+        (item) => item.name === selectedValue
+      );
+    }
+
+    // 若id鍵存在
+    if (selectedArr[0].id) {
+      optionId = selectedArr[0].id;
+    } // 若id鍵不存在
+     else if (selectedArr[0].name[0].id) {
+       optionId = selectedArr[0].name[0].id;
      }
-   };
+
+    // 更新選中的 id
+    if (optionId) {
+      setValue(`${label}_id`, optionId);
+    } else {
+      //若沒選擇
+      setValue(`${label}_id`, 0);
+    }
+  };
 
   return (
     <div className="">

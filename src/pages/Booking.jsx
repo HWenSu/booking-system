@@ -116,11 +116,13 @@ const Booking = () => {
                 pagesLength={slicedDataArr.length}
                 prefix={`page${currentPage}`}
                 watch={watch}
+                selectedStaffId = {watch()}
               />
             );
           }
         })}
       </div>
+      {console.log(watch())}
       {currentPage === slicedDataArr.length && (
         <SubmitButton formData={watch()} trigger={trigger} />
       )}

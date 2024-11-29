@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addMinutes, format } from "date-fns";
+import { addMinutes, parseISO, format, isSameDay } from "date-fns";
 
-const BookingTime = ({ duration, errors, register, setValue }) => {
-
+const BookingTime = ({ duration, errors, register, setValue, data, watch }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   //處理時間變化
@@ -16,9 +15,54 @@ const BookingTime = ({ duration, errors, register, setValue }) => {
     const formattedDate = format(date, "yyyy-MM-dd HH:mm");
     const formattedEndDate = format(endDate, "yyyy-MM-dd HH:mm");
     //更新資料
-    setValue('startTime', formattedDate)
-    setValue('endTime', formattedEndDate)
-  }
+    setValue("startTime", formattedDate);
+    setValue("endTime", formattedEndDate);
+  };
+
+  //從 Watch 中取得 staff id 來計算該員工的可預約時間
+  const staffId = watch("Staff_id");
+  const staffName = watch("Staff");
+
+  // 從後端獲取不可選擇的時間陣列
+  const staffUnAvailableTime =
+    data[0].unavailableDates[`staff_name:${staffName} ,staff_id:${staffId}`] ||
+    [];
+  console.log(staffUnAvailableTime);
+
+  // 將不可選的時間陣列轉換為 Date 對象
+  const unavailableRanges = staffUnAvailableTime.map((time) => ({
+    start: parseISO(time.start),
+    end: parseISO(time.end),
+  }));
+  console.log("Unavailable Ranges:", unavailableRanges);
+
+  // 根據選中日期選擇 react-datepicker 可接受的 excludeTimes 格式
+    const getExcludeTimes = () => {
+      if (!startDate) return [];
+
+      return unavailableRanges.flatMap((range) => {
+        const times = [];
+        let currentTime = range.start;
+
+        // 確定時間範圍是和日期相同的
+        while (currentTime <= range.end) {
+          if (isSameDay(currentTime, startDate)) {
+            times.push(new Date(currentTime)); // 只添加選中日期的時間範圍
+          }
+          currentTime = addMinutes(currentTime, 30); // 每30分鐘生成一段時間
+        }
+
+        return times;
+      });
+    };
+
+    // 使用 useMemo 避免不必要的重新計算
+    const excludeTimes = useMemo(
+      () => getExcludeTimes(),
+      [startDate, unavailableRanges]
+    );
+
+    console.log("Exclude Times:", excludeTimes);
 
   return (
     <div className=" ml-auto">
@@ -30,14 +74,16 @@ const BookingTime = ({ duration, errors, register, setValue }) => {
             onChange={handleChange}
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={duration}
+            timeIntervals={30}
             timeCaption="time"
             dateFormat=" yyyy/ MM/ dd, h:mm aa"
             inline
-            showDisabledMonthNavigation
+            excludeTimes={excludeTimes}
           />
           {/* 處理錯誤訊息 */}
-          {errors.endTime && <p className="booking-required">{errors.endTime.message}</p>}
+          {errors.endTime && (
+            <p className="booking-required">{errors.endTime.message}</p>
+          )}
 
           {/* 註冊 startTime , endTime 字串 */}
           <input type="hidden" {...register("startTime")} />
