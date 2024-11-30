@@ -1,16 +1,21 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addMinutes, parseISO, format, isSameDay } from "date-fns";
 
-const BookingTime = ({ duration, errors, register, setValue, data, watch }) => {
+const BookingTime = ({ errors, register, setValue, data, watch }) => {
   const [startDate, setStartDate] = useState(new Date());
+
+
+  //監控duration的變化
+  let selectedDuration = watch("Duration")
+  console.log(watch("Duration"));
 
   //處理時間變化
   const handleChange = (date) => {
     setStartDate(date);
     // 計算結束時間
-    const endDate = addMinutes(date, duration);
+    const endDate = addMinutes(date, selectedDuration);
     //格式化時間
     const formattedDate = format(date, "yyyy-MM-dd HH:mm");
     const formattedEndDate = format(endDate, "yyyy-MM-dd HH:mm");
@@ -27,7 +32,6 @@ const BookingTime = ({ duration, errors, register, setValue, data, watch }) => {
   const staffUnAvailableTime =
     data[0].unavailableDates[`staff_name:${staffName} ,staff_id:${staffId}`] ||
     [];
-  console.log(staffUnAvailableTime);
 
   // 將不可選的時間陣列轉換為 Date 對象
   const unavailableRanges = staffUnAvailableTime.map((time) => ({
@@ -35,6 +39,7 @@ const BookingTime = ({ duration, errors, register, setValue, data, watch }) => {
     end: parseISO(time.end),
   }));
   console.log("Unavailable Ranges:", unavailableRanges);
+ 
 
   // 根據選中日期選擇 react-datepicker 可接受的 excludeTimes 格式
     const getExcludeTimes = () => {
@@ -62,19 +67,19 @@ const BookingTime = ({ duration, errors, register, setValue, data, watch }) => {
       [startDate, unavailableRanges]
     );
 
-    console.log("Exclude Times:", excludeTimes);
+
 
   return (
     <div className=" ml-auto">
       <p className="pb-3">Booking Time</p>
-      {duration ? (
+      {selectedDuration ? (
         <>
           <DatePicker
             selected={startDate}
             onChange={handleChange}
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={30}
+            timeIntervals={selectedDuration}
             timeCaption="time"
             dateFormat=" yyyy/ MM/ dd, h:mm aa"
             inline

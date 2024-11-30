@@ -12,15 +12,15 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
     console.log(data);
 
     let optionId = null;
-    let selectedArr = []
+    let selectedArr = [];
 
     //尋找選中值的 option 資料
     //先判斷資料結構中的name是否為陣列
-    if(!Array.isArray(data[0].option[0].name)){
+    if (!Array.isArray(data[0].option[0].name)) {
       selectedArr = data[0].option.filter(
         (item) => item.name === selectedValue
       );
-    } else {
+    } else if (data[0].label === "Staff") {
       //資料結構中的name為陣列，則需往下拆解取出最後層的陣列
       const optionArr = data[0].option.filter(
         (option) => option.gender_id === Number(genderId)
@@ -28,15 +28,29 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
       selectedArr = optionArr[0].name.filter(
         (item) => item.name === selectedValue
       );
+    } else if (data[0].label === "Duration") {
+      const optionArr = data[0].option.filter(
+        (option) => option.id === Number(serviceId)
+      );
+      selectedArr = optionArr[0].name.filter(
+        (item) => item === Number(selectedValue)
+      );
+      console.log("optionArr:", optionArr);
+      console.log(optionArr[0].name);
     }
 
-    // 若id鍵存在
-    if (selectedArr[0].id) {
+    console.log("selectedArr:", selectedArr);
+
+    // 若id鍵不存在
+    if (!selectedArr[0].id) {
+      optionId = null;
+    } // 若id鍵存在
+    else if (selectedArr[0].id) {
       optionId = selectedArr[0].id;
-    } // 若id鍵不存在
-     else if (selectedArr[0].name[0].id) {
-       optionId = selectedArr[0].name[0].id;
-     }
+    } // 若鍵值為 label_id 時
+    else if (selectedArr[0].name[0].id) {
+      optionId = selectedArr[0].name[0].id;
+    }
 
     // 更新選中的 id
     if (optionId) {
