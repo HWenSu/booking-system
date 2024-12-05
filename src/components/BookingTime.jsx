@@ -19,7 +19,7 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
   const handleChange = (date) => {
     // 確保選擇時間為 UTC 格式
     const utcDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-    setStartDate(utcDate);
+    setStartDate(new Date(date.getTime()));
     // 計算結束時間
     const endDate = addMinutes(utcDate, duration);
     //更新資料
