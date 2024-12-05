@@ -13,12 +13,12 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
       handleChange(startDate)}
   }, [duration])
 
+
+
   //處理時間變化
   const handleChange = (date) => {
     // 確保選擇時間為 UTC 格式
-    const utcDate = new Date(
-      date.getTime()
-    );
+    const utcDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
     setStartDate(utcDate);
     // 計算結束時間
     const endDate = addMinutes(utcDate, duration);

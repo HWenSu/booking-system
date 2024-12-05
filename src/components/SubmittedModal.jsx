@@ -1,5 +1,9 @@
 import React from 'react'
 
+function utcDate (date) { return new Date(date.getTime() + date.getTimezoneOffset() * 60000) }
+
+
+
 const SubmittedModal = ({ formData }) => {
   console.log(formData)
   return (
@@ -10,7 +14,8 @@ const SubmittedModal = ({ formData }) => {
           {formData.Name} 感謝您預約 {formData.Service}
         </p>
         <p>
-          預約時段: {formData.startTime} - {formData.endTime}
+          預約時段: {utcDate(formData.startTime).toLocaleString()} -{" "}
+          {utcDate(formData.endTime).toLocaleString()}
         </p>
         <p>預約資訊將會寄送至您的信箱，如有問題請與我們聯繫</p>
         <button>返回首頁</button>
