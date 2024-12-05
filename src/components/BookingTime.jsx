@@ -1,16 +1,17 @@
 import { useState, useMemo, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addMinutes, parseISO, format, isSameDay } from "date-fns";
+import { addMinutes, isSameDay } from "date-fns";
 
-const BookingTime = ({ errors, register, setValue, data, watch }) => {
+const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
   const [startDate, setStartDate] = useState(new Date());
 
-
-
   //監控duration的變化
-  let selectedDuration = watch("Duration");
-  console.log(watch("Duration"));
+
+  useEffect(()=> {
+    if(duration){
+      handleChange(startDate)}
+  }, [duration])
 
   //處理時間變化
   const handleChange = (date) => {
@@ -20,7 +21,7 @@ const BookingTime = ({ errors, register, setValue, data, watch }) => {
     );
     setStartDate(utcDate);
     // 計算結束時間
-    const endDate = addMinutes(utcDate, selectedDuration);
+    const endDate = addMinutes(utcDate, duration);
     //更新資料
     setValue("startTime", utcDate);
     setValue("endTime", endDate);
@@ -80,7 +81,7 @@ const BookingTime = ({ errors, register, setValue, data, watch }) => {
   return (
     <div className=" ml-auto">
       <p className="pb-3">Booking Time</p>
-      {selectedDuration ? (
+      {duration ? (
         <>
           <DatePicker
             selected={startDate}
