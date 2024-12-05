@@ -7,21 +7,23 @@ const BookingTime = ({ errors, register, setValue, data, watch }) => {
   const [startDate, setStartDate] = useState(new Date());
 
 
+
   //監控duration的變化
-  let selectedDuration = watch("Duration")
+  let selectedDuration = watch("Duration");
   console.log(watch("Duration"));
 
   //處理時間變化
   const handleChange = (date) => {
-    setStartDate(date);
+    // 確保選擇時間為 UTC 格式
+    const utcDate = new Date(
+      date.getTime()
+    );
+    setStartDate(utcDate);
     // 計算結束時間
-    const endDate = addMinutes(date, selectedDuration);
-    //格式化時間
-    const formattedDate = format(date, "yyyy-MM-dd HH:mm");
-    const formattedEndDate = format(endDate, "yyyy-MM-dd HH:mm");
+    const endDate = addMinutes(utcDate, selectedDuration);
     //更新資料
-    setValue("startTime", formattedDate);
-    setValue("endTime", formattedEndDate);
+    setValue("startTime", utcDate);
+    setValue("endTime", endDate);
   };
 
   //從 Watch 中取得 staff id 來計算該員工的可預約時間
@@ -35,38 +37,44 @@ const BookingTime = ({ errors, register, setValue, data, watch }) => {
 
   // 將不可選的時間陣列轉換為 Date 對象
   const unavailableRanges = staffUnAvailableTime.map((time) => ({
-    start: parseISO(time.start),
-    end: parseISO(time.end),
+    start: time.start, //UTC時區的字串 
+    end: time.end
   }));
   console.log("Unavailable Ranges:", unavailableRanges);
- 
+  console.log("staffUnAvailableTime", staffUnAvailableTime);
 
-  // 根據選中日期選擇 react-datepicker 可接受的 excludeTimes 格式
-    const getExcludeTimes = () => {
-      if (!startDate) return [];
+  // 根據選中日期選擇 react-date picker 可接受的 excludeTimes 格式
+  const getExcludeTimes = () => {
+    if (!startDate) return [];
 
-      return unavailableRanges.flatMap((range) => {
-        const times = [];
-        let currentTime = range.start;
+    return unavailableRanges.flatMap((range) => {
+      const times = [];
+      let currentTime = new Date(range.start); 
+      let currentUTCTime = new Date(currentTime.getTime() + currentTime.getTimezoneOffset()*60000);
+      const rangeEndTime = new Date(range.end);
+      const rangeEndUTCTime = new Date(
+        rangeEndTime.getTime() + rangeEndTime.getTimezoneOffset() * 60000
+      );
 
-        // 確定時間範圍是和日期相同的
-        while (currentTime <= range.end) {
-          if (isSameDay(currentTime, startDate)) {
-            times.push(new Date(currentTime)); // 只添加選中日期的時間範圍
-          }
-          currentTime = addMinutes(currentTime, 30); // 每30分鐘生成一段時間
+      while (currentUTCTime <= rangeEndUTCTime) {
+        if (isSameDay(currentUTCTime, startDate)) {
+          times.push(currentUTCTime);
         }
+        currentUTCTime = addMinutes(currentUTCTime, 30); // 每次增加 30 分鐘
+      }
 
-        return times;
-      });
-    };
+      return times;
+    });
+  };
 
-    // 使用 useMemo 避免不必要的重新計算
-    const excludeTimes = useMemo(
-      () => getExcludeTimes(),
-      [startDate, unavailableRanges]
-    );
 
+  // 使用 useMemo 避免不必要的重新計算
+  const excludeTimes = useMemo(
+    () => getExcludeTimes(),
+    [startDate, unavailableRanges]
+  );
+
+  console.log("excludeTimes", excludeTimes);
 
 
   return (
@@ -79,9 +87,9 @@ const BookingTime = ({ errors, register, setValue, data, watch }) => {
             onChange={handleChange}
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={selectedDuration}
-            timeCaption="time"
-            dateFormat=" yyyy/ MM/ dd, h:mm aa"
+            timeIntervals={30}
+            timeCaption="Time"
+            dateFormat=" yyyy-MM-dd HH:mm"
             inline
             excludeTimes={excludeTimes}
           />
