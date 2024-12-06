@@ -1,6 +1,8 @@
 // 從env取得duration上限數量
 // const maxDuration = parseInt(import.meta.env.VITE_MAX_DURATION_LENGTH, 10)
 
+import { Link } from "react-router-dom";
+
 const ServiceModal = ({ isOpen, onClose, title, description, imgURL, selectedMassage_id, data }) => {
   if (!isOpen) return null;
   // 檢查duration數量
@@ -36,7 +38,7 @@ const ServiceModal = ({ isOpen, onClose, title, description, imgURL, selectedMas
                         <p>mins</p>
                       </div>
                       <button className="text-white bg-highlight rounded-full p-3 hover:bounce2">
-                        $ {item.price}
+                        <Link to='/miumiu-spa/orders'>$ {item.price}</Link>
                       </button>
                     </li>
                   );
