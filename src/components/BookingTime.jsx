@@ -13,7 +13,9 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
       handleChange(startDate)}
   }, [duration])
 
-
+  //設定上班時間變數
+  const workingHoursStart = 9 // 9:00
+  const workingHoursEnd = 20 // 20:00
 
   //處理時間變化
   const handleChange = (date) => {
@@ -43,6 +45,9 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
   }));
   console.log("Unavailable Ranges:", unavailableRanges);
   console.log("staffUnAvailableTime", staffUnAvailableTime);
+
+  //過濾過去時間和非上班時間
+  
 
   // 根據選中日期選擇 react-date picker 可接受的 excludeTimes 格式
   const getExcludeTimes = () => {

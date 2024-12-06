@@ -160,9 +160,12 @@
 
 }
 
-/* 預約表單必填提醒 */
+/* 預約表單輸入框的錯誤訊息 */
 .booking-required{
-  color: var(--warning-color)
+  color: var(--warning-color);
+  display: block;
+
+  
 }
 
 /* 時間選擇器樣式 */
@@ -173,18 +176,9 @@
   font-family: var(--font-family);
 }
 
-
-
 .theme-classic .react-datepicker {
   font-family: "EB Garamond", "Noto Serif HK", serif;
 }
-
-.theme-modern .react-datepicker {
-
-}
-
-
-
 
 .react-datepicker .react-datepicker__header {
   background-color: var(--tertiary-color);
