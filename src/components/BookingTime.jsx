@@ -47,7 +47,17 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
   console.log("staffUnAvailableTime", staffUnAvailableTime);
 
   //過濾過去時間和非上班時間
-  
+  const filterTimes = (date) => {
+    const selectedHours = date.getHours()
+    const now = new Date()
+
+    return (
+      selectedHours >= workingHoursStart &&
+      selectedHours <= workingHoursEnd &&
+      date.getTime() > now.getTime()
+    )
+  }
+
 
   // 根據選中日期選擇 react-date picker 可接受的 excludeTimes 格式
   const getExcludeTimes = () => {
@@ -97,7 +107,8 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
             timeCaption="Time"
             dateFormat=" yyyy-MM-dd HH:mm"
             inline
-            excludeTimes={excludeTimes}
+            excludeTimes={excludeTimes} // 已被預約時間
+            filterTime={filterTimes} // 過去時間與非上班時間
           />
           {/* 處理錯誤訊息 */}
           {errors.endTime && (
