@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "/public/modals/images/logo.png"
+import { useTheme } from "../context/ThemeContext";
 
 const Navigation = () => {
+  //獲取切換主題的函示
+   const { toggleTheme } = useTheme()
 
   return (
     <div>
@@ -14,7 +17,7 @@ const Navigation = () => {
               </h1>
             </Link>
           </li>
-          <div className=" flex mr-[2rem] text-[1.2rem] ">
+          <div className=" flex mr-[2rem] text-[1.2rem] items-center ">
             <li className="hover:link-hover ">
               <Link to="/" className="p-4">
                 HOME
@@ -35,6 +38,10 @@ const Navigation = () => {
                 BOOKING
               </Link>
             </li>
+            <button className="bg-tertiary text-highlight text-sm rounded-full p-4 text-center w-20 hover:link-hover"
+            onClick={toggleTheme}>
+              Change Theme
+            </button>
           </div>
         </ul>
       </nav>

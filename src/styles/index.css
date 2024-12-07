@@ -79,11 +79,11 @@
     }
 
   .theme-modern .dropdown{
-      @apply w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
+      @apply w-40 mx-4 p-2  my-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
     }
 
   .theme-classic .dropdown{
-      @apply w-40 mx-4 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
+      @apply w-40 mx-4 my-2 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
     }  
 
   /* input 填寫表單 */
@@ -250,5 +250,5 @@
 }
 
 .staff-info-container {
-  @apply justify-self-start
+  @apply  justify-self-start
 }

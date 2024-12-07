@@ -7,8 +7,24 @@ const ThemeContext = createContext()
 export const ThemeProvider = ({children})=> {
   const [currentTheme, setCurrentTheme] = useState("mudstone");
 
+  //切換主題的函數
+  const toggleTheme = () => {
+    setCurrentTheme((preTheme) =>{
+      switch (preTheme) {
+        case "mudstone":
+          return "modern";
+        case "modern":
+          return "classic";
+          // 默認值（防止意外情況）
+        default: 
+          return "mudstone";; 
+    }
+    
+    })
+  }
+
   return (
-    <ThemeContext.Provider value={{currentTheme, setCurrentTheme}}>
+    <ThemeContext.Provider value={{currentTheme, setCurrentTheme, toggleTheme}}>
       {children}
     </ThemeContext.Provider>
   )
