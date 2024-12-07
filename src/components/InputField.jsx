@@ -23,11 +23,11 @@ const InputField = ({ data, errors, register, setValue }) => {
       case 'Name':
         rules.pattern = {
           value: /^[\u4e00-\u9fa5a-zA-Z\s]+$/, // 中文、英文、空格
-          message: `只能填入中文或英文`,
+          message: `Only Chinese or English can be entered.`,
         };
         rules.minLength = {
           value: 2,
-          message: `至少兩個字元以上`,
+          message: `At least two characters are required.`,
         };
       break
       //驗證電話
@@ -35,7 +35,7 @@ const InputField = ({ data, errors, register, setValue }) => {
         rules.pattern = {
           //台灣手機號碼
           value: /^09\d{8}$/,
-          message: `請輸入正確的電話號碼`,
+          message: `Please enter a valid phone number`,
         };
       break
 
@@ -43,7 +43,7 @@ const InputField = ({ data, errors, register, setValue }) => {
         rules.pattern = {
           // 基本電子郵件格式
           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          message: `請輸入正確的信箱`,
+          message: `Please enter a valid email address`,
         };
         break
     }
@@ -52,8 +52,8 @@ const InputField = ({ data, errors, register, setValue }) => {
 
 
   return (
-    <div className="grid">
-      <div className="grid grid-cols-4">
+    <div className="m-2">
+      <div className="input-textarea">
         <p className="text-center px-5">{label}</p>
         <input
           // type={data[0].type}

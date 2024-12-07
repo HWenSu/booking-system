@@ -62,42 +62,57 @@ const Dropdown = ({ data, errors, register, setValue, watch }) => {
   };
 
   return (
-    <div className="">
-      <label>{label}</label>
-      <select
-        className="dropdown"
-        name={label}
-        {...register(label, {
-          required: isRequired ? `${label} is required` : false,
-          onChange: handleSelectChange,
-        })}
-      >
-        <option value="">Choose {data[0].label}</option>
-        {data[0] &&
-          data[0].option.map((option, index) => {
-            if( !Array.isArray(option.name) ) {
-              return ( <option key={index} value={option.name}>
-                {option.name}
-              </option> )
-            } else if 
-             (label === 'Duration' && option.id === Number(serviceId)) {
-               return option.name.map((item, arrIndex) => (
-                 <option key={`${index}-${arrIndex}`} value={item}>
-                   {item}
-                 </option>
-               ))
-             } else if (label === "Staff" && option.gender_id === Number(genderId)) {
-                   return option.name.map((item, arrIndex) => (
-                  <option key={`${index}-${arrIndex}`} value={item.name}>
-                    {item.name}
-                  </option>
-                ))
-              } else {
-                return []
-              }
+    <div className="dropdown-container">
+      <div className="dropdown-area">
+        <label className="text-center">{label}</label>
+        <div>
+          <select
+            className="dropdown"
+            name={label}
+            {...register(label, {
+              required: isRequired ? `${label} is required` : false,
+              onChange: handleSelectChange,
             })}
-      </select>
-      {errors[label] && <p className="booking-required">{errors[label].message}</p>}
+          >
+            <option value="">Choose {data[0].label}</option>
+            {data[0] &&
+              data[0].option.map((option, index) => {
+                if (!Array.isArray(option.name)) {
+                  return (
+                    <option key={index} value={option.name}>
+                      {option.name}
+                    </option>
+                  );
+                } else if (
+                  label === "Duration" &&
+                  option.id === Number(serviceId)
+                ) {
+                  return option.name.map((item, arrIndex) => (
+                    <option key={`${index}-${arrIndex}`} value={item}>
+                      {item}
+                    </option>
+                  ));
+                } else if (
+                  label === "Staff" &&
+                  option.gender_id === Number(genderId)
+                ) {
+                  return option.name.map((item, arrIndex) => (
+                    <option key={`${index}-${arrIndex}`} value={item.name}>
+                      {item.name}
+                    </option>
+                  ));
+                } else {
+                  return [];
+                }
+              })}
+          </select>
+          {errors[label] && (
+            <p className="booking-required text-sm text-left pl-3">
+              {errors[label].message}
+            </p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -75,15 +75,15 @@
   
   /* 對應樣式的下拉選單樣式 */
   .theme-mudstone .dropdown{
-      @apply mb-5 rounded-full w-40 m-2 appearance-none bg-white px-1 outline-none
+      @apply rounded-full w-40 m-2 appearance-none bg-white px-1 outline-none
     }
 
   .theme-modern .dropdown{
-      @apply mb-6 w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
+      @apply w-40 mx-4 p-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
     }
 
   .theme-classic .dropdown{
-      @apply mb-6 w-40 mx-4 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
+      @apply w-40 mx-4 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
     }  
 
   /* input 填寫表單 */
@@ -160,12 +160,24 @@
 
 }
 
+/* 預約表單容器 */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.input-textarea {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
 /* 預約表單輸入框的錯誤訊息 */
 .booking-required{
   color: var(--warning-color);
   display: block;
-
-  
 }
 
 /* 時間選擇器樣式 */
@@ -174,6 +186,19 @@
   color: var(--primary-color);
   border: 1px solid var(--tertiary-color);
   font-family: var(--font-family);
+}
+
+/* 下拉表單容器 */
+.dropdown-container {
+  display: grid;
+  text-align: center;
+}
+
+.dropdown-area {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px 10px;
+  align-items: center;
 }
 
 .theme-classic .react-datepicker {

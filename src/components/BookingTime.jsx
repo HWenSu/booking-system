@@ -94,7 +94,7 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
 
 
   return (
-    <div className=" ml-auto">
+    <div className="timepicker-container">
       <p className="pb-3">Booking Time</p>
       {duration ? (
         <>

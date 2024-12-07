@@ -92,11 +92,14 @@ const Booking = () => {
   console.log(watch()) } 
 
   return (
-    <form className={"flex-col p-8"} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={"flex-col p-8  justify-center h-[80vh]"}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h2 className="font-semibold text-[3rem] animate-fade-in-title mb-5 text-highlight">
         Booking
       </h2>
-      <div className=" text-lg relative">
+      <div className=" form-container">
         {/* //渲染模板 */}
         {slicedDataArr[currentPage - 1].map((item, index) => {
           const Component = componentMap[item.category];
@@ -116,16 +119,16 @@ const Booking = () => {
                 pagesLength={slicedDataArr.length}
                 prefix={`page${currentPage}`}
                 watch={watch}
-                selectedStaffId = {watch()}
+                selectedStaffId={watch()}
               />
             );
           }
         })}
+        {console.log(watch())}
+        {currentPage === slicedDataArr.length && (
+          <SubmitButton formData={watch()} trigger={trigger} />
+        )}
       </div>
-      {console.log(watch())}
-      {currentPage === slicedDataArr.length && (
-        <SubmitButton formData={watch()} trigger={trigger} />
-      )}
     </form>
   );
 }
