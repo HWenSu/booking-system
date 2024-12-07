@@ -94,7 +94,7 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
 
 
   return (
-    <div className="timepicker-container">
+    <div className="m-5">
       <p className="pb-3">Booking Time</p>
       {duration ? (
         <>
@@ -125,7 +125,7 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
           />
         </>
       ) : (
-        <p> Please choose service and duration first</p>
+        <p className="text-highlight text-lg"> Please choose service and duration first</p>
       )}
     </div>
   );

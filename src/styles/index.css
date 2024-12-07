@@ -19,7 +19,7 @@
     --primary-color: #242424;
     --secondary-color: #ffffff47;
     --tertiary-color:#a2b6fb38;
-    --highlight:#4d7df5 ;
+    --highlight:#1c4cc5 ;
     --warning-color:rgb(155, 78, 78);
     --font-family:"Ubuntu", "Chocolate Classical Sans", sans-serif;
     background: 
@@ -75,15 +75,15 @@
   
   /* 對應樣式的下拉選單樣式 */
   .theme-mudstone .dropdown{
-      @apply rounded-full w-40 m-2 appearance-none bg-white px-1 outline-none
+      @apply rounded-full w-40 m-2 appearance-none bg-white px-1 outline-none text-[1.1rem]
     }
 
   .theme-modern .dropdown{
-      @apply w-40 mx-4 p-2  my-2 rounded-lg bg-white/50 px-1 outline-none text-highlight
+      @apply w-40 mx-4 p-2  my-2 rounded-lg bg-white/50 px-1 outline-none text-highlight text-[1.1rem]
     }
 
   .theme-classic .dropdown{
-      @apply w-40 mx-4 my-2 bg-transparent px-1 outline-none border-b-[1px] border-tertiary
+      @apply w-40 mx-4 my-2 bg-transparent px-1 outline-none border-b-[1px] border-tertiary text-[1.1rem]
     }  
 
   /* input 填寫表單 */
@@ -157,7 +157,6 @@
     transform: translateY(0);
   }
 }
-
 }
 
 /* 預約表單頁面 */
@@ -168,6 +167,7 @@
   align-items: center;
   width: 80vw;
   margin: 0 auto;
+  font-size: 1.3rem;
 }
 
 .input-textarea {
@@ -242,7 +242,7 @@
 }
 
 .staff-list-container {
-  @apply bg-white m-3 bg-opacity-30 grid grid-cols-[1fr_2fr] p-3 place-items-center
+  @apply bg-white m-6 bg-opacity-30 grid grid-cols-[1fr_2fr] p-3 place-items-center rounded-[30px]
 }
 
 .staff-avatar {
@@ -251,4 +251,26 @@
 
 .staff-info-container {
   @apply  justify-self-start
+}
+
+/* 首頁 */
+.parallax {
+  background-image: url('../modals/images/pexels-elly-fairytale-3865712.jpg');
+  height: 80vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.content h2, .content p {
+  margin: 0;
 }
