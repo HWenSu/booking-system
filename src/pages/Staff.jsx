@@ -6,19 +6,19 @@ const Staff = () => {
 
   return (
     <div>
-      <ul className="flex flex-col w-[80vw]  mx-auto py-[8vh]">
+      <ul className="staff-container">
         {data &&
           data.map((s) => {
             return (
               <li
                 key={s.id}
-                className="flex justify-around m-[2vh] p-4 bg-white/50 rounded-lg"
+                className="staff-list-container"
               >
                 <div
                   style={{ backgroundImage: `url(${s.img ||" ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"})` }}
-                  className={`w-[10rem] h-[10rem] rounded-full bg-[length:12rem] bg-no-repeat bg-left`}
+                  className = 'staff-avatar'
                 ></div>
-                <div className="w-[40rem]">
+                <div className="staff-info-container">
                   <div className="flex items-center">
                     <h2 className="font-semibold text-[2rem]  mr-7 text-highlight ">
                       {s.name}

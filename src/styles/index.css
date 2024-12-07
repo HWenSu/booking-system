@@ -160,6 +160,7 @@
 
 }
 
+/* 預約表單頁面 */
 /* 預約表單容器 */
 .form-container {
   display: flex;
@@ -235,4 +236,19 @@
   background-color: var(--tertiary-color);
 }
 
+/* Staff頁面 */
+.staff-container {
+  @apply mx-auto w-[70vw] max-w-[70rem] p-10
+}
 
+.staff-list-container {
+  @apply bg-white m-3 bg-opacity-30 grid grid-cols-[1fr_2fr] p-3 place-items-center
+}
+
+.staff-avatar {
+  @apply rounded-full w-40 h-40 bg-cover bg-center
+}
+
+.staff-info-container {
+  @apply justify-self-start
+}
