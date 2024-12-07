@@ -19,13 +19,11 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
 
   //處理時間變化
   const handleChange = (date) => {
-    // 確保選擇時間為 UTC 格式
-    const utcDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-    setStartDate(new Date(date.getTime()));
+    setStartDate(date);
     // 計算結束時間
-    const endDate = addMinutes(utcDate, duration);
+    const endDate = addMinutes(startDate, duration);
     //更新資料
-    setValue("startTime", utcDate);
+    setValue("startTime", startDate);
     setValue("endTime", endDate);
   };
 
@@ -66,17 +64,13 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
     return unavailableRanges.flatMap((range) => {
       const times = [];
       let currentTime = new Date(range.start); 
-      let currentUTCTime = new Date(currentTime.getTime() + currentTime.getTimezoneOffset()*60000);
       const rangeEndTime = new Date(range.end);
-      const rangeEndUTCTime = new Date(
-        rangeEndTime.getTime() + rangeEndTime.getTimezoneOffset() * 60000
-      );
 
-      while (currentUTCTime <= rangeEndUTCTime) {
-        if (isSameDay(currentUTCTime, startDate)) {
-          times.push(currentUTCTime);
+      while (currentTime <= rangeEndTime) {
+        if (isSameDay(currentTime, startDate)) {
+          times.push(currentTime);
         }
-        currentUTCTime = addMinutes(currentUTCTime, 30); // 每次增加 30 分鐘
+        currentTime = addMinutes(currentTime, 30); // 每次增加 30 分鐘
       }
 
       return times;
