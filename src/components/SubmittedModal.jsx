@@ -11,8 +11,8 @@ const SubmittedModal = ({ formData }) => {
           {formData.Name} 感謝您預約 {formData.Service}
         </p>
         <p>
-          預約時段: {formData.startTime.toLocaleString()}{" "}-{" "}
-          {formData.endTime.toLocaleString()}
+          預約時段: {formData.startTime}{" "}-{" "}
+          {formData.endTime}
         </p>
         <p>預約資訊將會寄送至您的信箱，如有問題請與我們聯繫</p>
         <button>

@@ -10,13 +10,15 @@ const Staff = () => {
         {data &&
           data.map((s) => {
             return (
-              <li
-                key={s.id}
-                className="staff-list-container"
-              >
+              <li key={s.id} className="staff-list-container">
                 <div
-                  style={{ backgroundImage: `url(${s.img ||" ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"})` }}
-                  className = 'staff-avatar'
+                  style={{
+                    backgroundImage: `url(${
+                      s.img ||
+                      " ../modals/images/b170870007dfa419295d949814474ab2_t.jpeg"
+                    })`,
+                  }}
+                  className="staff-avatar"
                 ></div>
                 <div className="staff-info-container">
                   <div className="flex items-center">
@@ -31,7 +33,7 @@ const Staff = () => {
                       {s.expertise}
                     </h3>
                   </div>
-                  <div className="flex bg-white/70 rounded-full p-5">
+                  <div className="flex bg-secondary bg-opacity-30 rounded-full p-5 ">
                     {s.certificates.map((certificate, index) => {
                       return (
                         <h3 key={index} className="mr-5">

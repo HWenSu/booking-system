@@ -21,10 +21,16 @@ const BookingTime = ({ errors, register, setValue, data, watch, duration }) => {
   const handleChange = (date) => {
     setStartDate(date);
     // 計算結束時間
-    const endDate = addMinutes(startDate, duration);
+    const endDate = addMinutes(date, duration);
     //更新資料
-    setValue("startTime", startDate);
-    setValue("endTime", endDate);
+    setValue(
+      "startTime",
+      date.toLocaleString("zh-CN", { timeZone: "Asia/Taipei" })
+    );
+    setValue(
+      "endTime",
+      endDate.toLocaleString("zh-CN", { timeZone: "Asia/Taipei" })
+    );
   };
 
   //從 Watch 中取得 staff id 來計算該員工的可預約時間
