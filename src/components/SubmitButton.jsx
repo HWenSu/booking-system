@@ -43,15 +43,14 @@ const SubmitButton = ({formData, trigger}) => {
     //驗證表單是否正確填入
     const valid = await trigger();
 
-    const result = await postBookingData(submitData);
-    console.log("API Response", result)
-    
-
     if (!valid) {
       console.log("Validation Errors:", errors);
       return; // 阻止送出
     } else {
       setIsSubmitted(true);
+      //先檢查格式正確後再送出預約資料給後端
+      const result = await postBookingData(submitData);
+      console.log("API Response", result);
     }
   };
 
