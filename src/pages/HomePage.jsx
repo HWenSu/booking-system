@@ -3,8 +3,8 @@
 const HomePage = () => {
   return (
     <div>
-      <section class="parallax relative">
-        <div className="bg-white w-[40vw] h-[20rem] rounded-[70px] bg-opacity-50 absolute bottom-[10rem] left-10 flex flex-col items-center justify-center p-5">
+      <section className="parallax flex justify-center items-center md:relative">
+        <div className=" flex justify-evenly bg-white/60 rounded-[70px] flex flex-col p-5 h-[60vh] w-[80vw] md:w-[40vw]">
           <h1 className="text-highlight text-[2em]">Miu Miu Spa</h1>
           <p className="text-highlight">
             Miumiu spa is a well-known and premium brand in spa field. The
@@ -18,9 +18,14 @@ const HomePage = () => {
           </p>
         </div>
       </section>
-      <section class="content flex flex-col">
+      <section className="content flex flex-col">
         <h2 className="text-[3rem] text-highlight">Relax</h2>
-        <p className="text-highlight">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem, maiores quos unde sapiente culpa placeat, amet fuga molestiae eaque odit numquam optio! Voluptatem ad reprehenderit ut aspernatur culpa adipisci enim?</p>
+        <p className="text-highlight ">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+          maiores quos unde sapiente culpa placeat, amet fuga molestiae eaque
+          odit numquam optio! Voluptatem ad reprehenderit ut aspernatur culpa
+          adipisci enim?
+        </p>
         <div className="v-[50vh]"></div>
       </section>
     </div>

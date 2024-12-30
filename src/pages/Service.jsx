@@ -40,11 +40,11 @@ const Service = () => {
           size="2xl"
           className="my-8 text-highlight"
         />
-        <p className="text-primary text-[1.5rem]">
+        <p className="text-primary text-[1.2rem]">
           Please check below for our services
         </p>
       </div>
-      <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[5vw] pb-[10vh] ">
+      <ul className="grid 2xl:grid-cols-4 md:grid-cols-3 max-sm:grid-cols-1 gap-12 px-[10vw] pb-[10vh] ">
         {uniqueMassages &&
           uniqueMassages.map((service, index) => {
             const imgURL = `${

@@ -3,6 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateX(100%)", opacity: 0 },
+          "100%": { transform: "translateX(0%)", opacity: 1 },
+        },
+        slideOut: {
+          "0%": { transform: "translateX(0%)", opacity: 0 },
+          "100%": { transform: "translateX(100%)", opacity: 1 },
+        },
+      },
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
@@ -19,6 +29,8 @@ export default {
       animation: {
         "fade-in-up": "fadeInUp 0.5s ease-out",
         "fade-in-title": "fadeInUp 1s ease-in-out",
+        "slide-in": "slideIn 1s ease-in-out",
+        "slide-out": "slideOut 1s ease-in-out",
       },
       backgroundSize: {
         auto: "auto",

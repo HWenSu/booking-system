@@ -22,21 +22,21 @@ const Staff = () => {
                 ></div>
                 <div className="staff-info-container">
                   <div className="flex items-center">
-                    <h2 className="font-semibold text-[2rem]  mr-7 text-highlight ">
+                    <h2 className="font-semibold text-[2rem] text-highlight ">
                       {s.name}
                     </h2>
                     <p>{s.gender}</p>
                   </div>
 
                   <div className="flex my-4">
-                    <h3 className="mr-3 p-2 rounded-full bg-tertiary text-highlight ">
+                    <h3 className="p-2 rounded-full bg-tertiary text-highlight ">
                       {s.expertise}
                     </h3>
                   </div>
-                  <div className="flex bg-secondary bg-opacity-30 rounded-full p-5 ">
+                  <div className="flex bg-secondary bg-opacity-30 rounded-full p-[0.6rem] ">
                     {s.certificates.map((certificate, index) => {
                       return (
-                        <h3 key={index} className="mr-5">
+                        <h3 key={index} className="m-2">
                           {" "}
                           {certificate.name}
                         </h3>
