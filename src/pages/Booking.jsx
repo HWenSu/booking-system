@@ -21,11 +21,11 @@ const componentMap = {
 const Booking = () => {
   // 獲取模板資料
   const { data: templateData, error: templateError } = useAPIService(
-    "http://localhost:5000/miumiu-spa/template"
+    "/miumiu-spa/template"
   );
 
   const { data: orderData, error: orderError } = useAPIService(
-    "http://localhost:5000/miumiu-spa/order"
+    "/miumiu-spa/order"
   );
 
 

@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useAPIService = (url) => {
+const useAPIService = (endpoint) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+
+  // 環境變數中的 API URL，預設本地開發地址
+  const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(`${baseURL}${endpoint}`);
         console.log("Fetched data:", response.data);
         setData(response.data);
       } catch (error) {
@@ -26,7 +29,7 @@ const useAPIService = (url) => {
       }
     };
     getData();
-  }, [url]);
+  }, [endpoint]);
 
   return { data, error };
 };

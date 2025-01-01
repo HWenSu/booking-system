@@ -6,26 +6,28 @@ import useAPIService from '../components/hooks/useAPIService';
 
 const Service = () => {
 
+
+
   // 獲取 API 資料
   const { data, error } = useAPIService(
-    'http://localhost:5000/miumiu-spa/service'
+    "/miumiu-spa/service"
   );
-  
-  console.log(data, error)
 
-  const [ modalOpenIndex, setModalOpenIndex ] = useState(null)
+  console.log(data, error);
+
+  const [modalOpenIndex, setModalOpenIndex] = useState(null);
 
   const openModal = (index) => setModalOpenIndex(index);
   const closeModal = () => setModalOpenIndex(null);
 
-  if (error) return <div>Error: {error.message}</div>
-  if (!data) return <div>Loading...</div>; 
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data) return <div>Loading...</div>;
 
-// 使用 data.map() 將 massage_id 作為鍵，整個物件作為值，存入 Map
-// 使用 Array.from() 將 Map 的值轉換為陣列
+  // 使用 data.map() 將 massage_id 作為鍵，整個物件作為值，存入 Map
+  // 使用 Array.from() 將 Map 的值轉換為陣列
   const uniqueMassages = Array.from(
     new Map(data.map((item) => [item.massage_id, item])).values()
-  )
+  );
 
   console.log(uniqueMassages);
 
@@ -86,7 +88,7 @@ const Service = () => {
                     price={service.price}
                     imgURL={imgURL}
                     data={data}
-                    selectedMassage_id = {service.massage_id}
+                    selectedMassage_id={service.massage_id}
                   />
                 )}
               </li>

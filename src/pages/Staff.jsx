@@ -1,7 +1,7 @@
 import useAPIService from '../components/hooks/useAPIService';
 
 const Staff = () => {
-  const { data } = useAPIService("http://localhost:5000/miumiu-spa/staff");
+  const { data } = useAPIService("/miumiu-spa/staff");
   console.log(data);
 
   return (
