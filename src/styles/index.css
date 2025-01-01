@@ -73,8 +73,9 @@
 
   @layer base {
 
+  /*  手機版本的導航菜單 */
   .sideNavBar{
-    @apply flex-col absolute right-0 top-[8vh]  p-5 h-[25vh] rounded-xl bg-white/80 animate-slide-in 
+    @apply flex-col absolute right-0 top-[10vh] p-5 rounded-xl bg-white/90 animate-slide-in z-50 leading-[3rem]
   }
   
   /* 對應樣式的下拉選單樣式 */
@@ -166,46 +167,36 @@
 /* 預約表單頁面 */
 /* 預約表單容器 */
 .form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80vw;
-  margin: 0 auto;
-  font-size: 1.3rem;
-  height: 60vh;
+  @apply flex flex-col items-center w-[20rem] mx-auto text-[1.3rem] md:w-[40rem];
 }
+
 
 .input-textarea {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  @apply grid md:grid-cols-[1fr_2fr]
 }
 
+
+
 /* 預約表單輸入框的錯誤訊息 */
-.booking-required{
-  color: var(--warning-color);
-  display: block;
+.booking-required {
+  @apply text-[var(--warning-color)] block;
 }
 
 /* 時間選擇器樣式 */
 .react-datepicker {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border: 1px solid var(--tertiary-color);
-  font-family: var(--font-family);
+  @apply bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--tertiary-color)] font-[var(--font-family)];
 }
+
 
 /* 下拉表單容器 */
 .dropdown-container {
-  display: grid;
-  text-align: center;
+  @apply grid text-center;
 }
 
 .dropdown-area {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 10px 10px;
-  align-items: center;
+  @apply grid grid-cols-[1fr_2fr] gap-[10px] items-center;
 }
+
 
 .react-datepicker {
   @apply w-[328px]
@@ -259,28 +250,22 @@
 }
 
 .staff-info-container {
-  @apply justify-self-center justify-items-center  md:justify-self-start 
+  @apply justify-self-center justify-items-center  md:justify-self-start flex flex-col 
 }
 
 /* 首頁 */
 .parallax {
+  @apply min-h-[90vh] bg-scroll bg-center bg-no-repeat bg-cover;
   background-image: url('../modals/images/pexels-elly-fairytale-3865712.jpg');
-  min-height: 90vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
+
 
 .content {
-  height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  @apply h-[40vh] flex justify-center items-center text-center;
 }
 
+
 .content h2, .content p {
-  margin: 0;
+  @apply m-5
 }
 

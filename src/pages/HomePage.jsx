@@ -18,7 +18,7 @@ const HomePage = () => {
           </p>
         </div>
       </section>
-      <section className="content flex flex-col">
+      <section className="content flex flex-col max-w-[60vw] mx-auto">
         <h2 className="text-[3rem] text-highlight">Relax</h2>
         <p className="text-highlight ">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,

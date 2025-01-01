@@ -19,7 +19,7 @@ const Navigation = () => {
   return (
     <div>
       <nav>
-        <ul className="flex bg-secondary items-center justify-between bg-fixed">
+        <ul className="flex bg-secondary items-center justify-between bg-fixed px-5">
           <li className="basis-40">
             <Link to="/">
               <h1 className="min-w-40">
@@ -78,7 +78,7 @@ const Navigation = () => {
               </Link>
             </li>
             <button
-              className="bg-tertiary text-highlight text-sm rounded-full p-4 text-center w-20 hover:link-hover"
+              className="bg-tertiary text-highlight text-sm rounded-full p-4 text-center w-20 hover:link-hover my-5"
               onClick={toggleTheme}
             >
               Change Theme

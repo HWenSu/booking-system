@@ -6,7 +6,7 @@ const BookingInfo = ({ handleChange }) => {
   };
 
   return (
-    <div>
+    <div className="h-[100vh]">
       <BookingInput
         onInputChange={handleInputValue}
         title="Name:"
