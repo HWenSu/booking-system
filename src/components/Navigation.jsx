@@ -15,6 +15,13 @@ const Navigation = () => {
     setIsOpen(!isOpen)
   }
 
+  //連結點擊時側邊欄關閉
+  const toggleLink = () => {
+    if(isOpen){
+      setIsOpen(false)
+    }
+  }
+
   return (
     <div>
       <nav>
@@ -78,22 +85,22 @@ const Navigation = () => {
             `}
           >
             <li className="hover:link-hover">
-              <Link to="/" className="p-4" onClick={toggleMenu}>
+              <Link to="/" className="p-4" onClick={toggleLink}>
                 HOME
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/services" className="p-4" onClick={toggleMenu}>
+              <Link to="miumiu-spa/services" className="p-4" onClick={toggleLink}>
                 SERVICE
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/staff" className="p-4" onClick={toggleMenu}>
+              <Link to="miumiu-spa/staff" className="p-4" onClick={toggleLink}>
                 STAFF
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/orders" className="p-4" onClick={toggleMenu}>
+              <Link to="miumiu-spa/orders" className="p-4" onClick={toggleLink}>
                 BOOKING
               </Link>
             </li>
