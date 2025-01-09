@@ -13,7 +13,6 @@ const Navigation = () => {
   //漢堡按鈕點擊時切換
   const toggleMenu = () => {
     setIsOpen(!isOpen)
-    
   }
 
   return (
@@ -32,7 +31,9 @@ const Navigation = () => {
             </Link>
           </li>
           {/* 漢堡按鈕 */}
-          <button className="block m-4 md:hidden" onClick={toggleMenu}>
+          <button className="block m-4 md:hidden z-50" onClick={toggleMenu}>
+            { !isOpen? (
+              // 漢堡圖案
             <svg
               id="open-icon"
               className="w-6 h-6 text-highlight block"
@@ -47,33 +48,52 @@ const Navigation = () => {
                 strokeWidth="2"
                 d="M4 6h16M4 12h16m-7 6h7"
               />
-            </svg>
+            </svg> ) : 
+            (
+              // 叉叉圖案
+              <svg
+          id="close-icon"
+          className="w-6 h-6 text-highlight"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+            )
+          }
           </button>
           {/* 導航連結 */}
           <ul
-            className={`text-[1.2rem] items-center animate-slide-in ${
+            className={`text-[1.2rem] items-center animate-slide-in z-40 ${
               isOpen ? "block sideNavBar" : "hidden "
             } 
             md:flex 
             `}
           >
-            <li className="hover:link-hover ">
-              <Link to="/" className="p-4">
+            <li className="hover:link-hover">
+              <Link to="/" className="p-4" onClick={toggleMenu}>
                 HOME
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/services" className="p-4">
+              <Link to="miumiu-spa/services" className="p-4" onClick={toggleMenu}>
                 SERVICE
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/staff" className="p-4">
+              <Link to="miumiu-spa/staff" className="p-4" onClick={toggleMenu}>
                 STAFF
               </Link>
             </li>
             <li className="hover:link-hover">
-              <Link to="miumiu-spa/orders" className="p-4">
+              <Link to="miumiu-spa/orders" className="p-4" onClick={toggleMenu}>
                 BOOKING
               </Link>
             </li>
@@ -84,6 +104,11 @@ const Navigation = () => {
               Change Theme
             </button>
           </ul>
+            {/* 模糊背景 */}
+            <div className={`blur-bg ${isOpen? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            onClick={toggleMenu}
+            >
+            </div>
         </ul>
       </nav>
     </div>
