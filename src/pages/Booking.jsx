@@ -43,7 +43,7 @@ const Booking = () => {
   // 儲存頁面狀態
   const [currentPage, setCurrentPage] = useState(1);
 
-    if (!templateData) return <div>Loading</div>;
+    if (!templateData) return <div className="load-style">Loading...</div>;
     if (templateError) return <div>Error: {templateError.message}</div>;
 
 

@@ -1,8 +1,10 @@
 import useAPIService from '../components/hooks/useAPIService';
 
 const Staff = () => {
-  const { data } = useAPIService("/miumiu-spa/staff");
-  console.log(data);
+  const { data, error } = useAPIService("/miumiu-spa/staff");
+
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data) return <div className='load-style'>Loading...</div>;
 
   return (
     <div>

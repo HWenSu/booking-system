@@ -261,11 +261,13 @@
 
 
 .content {
-  @apply h-[40vh] flex justify-center items-center text-center;
+  @apply  flex justify-center items-center text-center px-3 pt-7 pb-14;
+}
+
+/* Loading樣式 */
+.load-style{
+   @apply h-[100vh] flex justify-center pt-[16rem] text-[3rem] text-highlight animate-fade-in-up animate-pulse
 }
 
 
-.content h2, .content p {
-  @apply m-5
-}
 

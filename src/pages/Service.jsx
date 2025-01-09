@@ -21,7 +21,7 @@ const Service = () => {
   const closeModal = () => setModalOpenIndex(null);
 
   if (error) return <div>Error: {error.message}</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div className='load-style'>Loading...</div>;
 
   // 使用 data.map() 將 massage_id 作為鍵，整個物件作為值，存入 Map
   // 使用 Array.from() 將 Map 的值轉換為陣列
