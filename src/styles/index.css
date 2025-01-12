@@ -143,11 +143,11 @@
   }
 
   .modalBg {
-    @apply fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40
+    @apply fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center backdrop-blur-sm z-40 
   }
 
   .modalPanel {
-    @apply relative bg-white w-[50rem] p-7 rounded-[30px] z-50 animate-fade-in-up opacity-80
+    @apply relative bg-white w-[50rem] h-[60vh] p-7 rounded-[30px] z-50 animate-fade-in-up opacity-80 max-h-[60%] overflow-y-auto
   }
   
   @keyframes bounce2 {
