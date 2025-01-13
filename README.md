@@ -66,8 +66,6 @@
 
 ### 取得專案
 
-1. Clone專案至本地
-
    ```bash
    git clone https://github.com/HWenSu/booking-system.git
    cd booking-system
