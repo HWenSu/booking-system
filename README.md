@@ -2,7 +2,8 @@
 ![專案封面圖](https://fakeimg.pl/500x300/)
 >一個專為服務型業務設計的線上預約平台，適用於按摩、理髮、醫療諮詢等場景。透過模板設計可以靈活調整預約頁面中項目的順序及排版（服務項目, 預約時段, 服務人員, 換頁按鈕..可自由更換順序）
 
-**網站預覽** : https://booking-system-weld-two.vercel.app/
+**網站預覽** : https://booking-system-weld-two.vercel.app
+
 **後端repo** : https://github.com/HWenSu/booking-system-back (後端由[Archer](https://github.com/Archer3912)協作)
 
 ---
