@@ -37,7 +37,7 @@
 ### 其他工具
 
 - **React Hook Form**：表單狀態管理與驗證。
-**React Date Picker**：建立時間選擇器。
+- **React Date Picker**：建立時間選擇器。
 
 
 
