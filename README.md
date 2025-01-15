@@ -1,5 +1,5 @@
 # 預約網站
-![專案封面圖](https://github.com/HWenSu/booking-system/blob/main/HomePage.gif)
+![專案封面圖](https://github.com/HWenSu/booking-system/blob/main/public/HomePage.gif)
 >一個專為服務型業務設計的線上預約平台，適用於按摩、理髮、醫療諮詢等場景。透過模板設計可以靈活調整預約頁面中項目的順序及排版（服務項目, 預約時段, 服務人員, 換頁按鈕..可自由更換順序）
 
 **網站預覽** : https://booking-system-weld-two.vercel.app
@@ -45,16 +45,16 @@
 
 ### 整體畫面
 
-![範例圖片 1](https://github.com/HWenSu/booking-system/blob/main/ServiceStaffPage.gif)
-![範例圖片 2](https://github.com/HWenSu/booking-system/blob/main/Booking.gif)
-![範例圖片 3](https://github.com/HWenSu/booking-system/blob/main/ChangeTheme.gif)
+![範例圖片 1](https://github.com/HWenSu/booking-system/blob/main/public/ServiceStaffPage.gif)
+![範例圖片 2](https://github.com/HWenSu/booking-system/blob/main/public/Booking.gif)
+![範例圖片 3](https://github.com/HWenSu/booking-system/blob/main/public/ChangeTheme.gif)
 
 ### 發送電子確認信
 
-![範例圖片 3](https://github.com/HWenSu/booking-system/blob/main/Email.png)
+![範例圖片 3](https://github.com/HWenSu/booking-system/blob/main/public/Email.png)
 
 ### 手機裝置畫面
-<img src="https://github.com/HWenSu/booking-system/blob/main/Mobile.gif" alt="description" width="300">
+<img src="https://github.com/HWenSu/booking-system/blob/main/public/Mobile.gif" alt="description" width="300">
 
 ## 安裝步驟
 
