@@ -84,22 +84,22 @@ const Navigation = () => {
             md:flex 
             `}
           >
-            <li className="hover:link-hover">
+            <li>
               <Link to="/" className="p-4" onClick={toggleLink}>
                 HOME
               </Link>
             </li>
-            <li className="hover:link-hover">
+            <li>
               <Link to="miumiu-spa/services" className="p-4" onClick={toggleLink}>
                 SERVICE
               </Link>
             </li>
-            <li className="hover:link-hover">
+            <li>
               <Link to="miumiu-spa/staff" className="p-4" onClick={toggleLink}>
                 STAFF
               </Link>
             </li>
-            <li className="hover:link-hover">
+            <li>
               <Link to="miumiu-spa/orders" className="p-4" onClick={toggleLink}>
                 BOOKING
               </Link>

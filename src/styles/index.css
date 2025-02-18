@@ -116,9 +116,6 @@
     @apply animate-bounce
   }
 
-  .link-hover {
-    @apply text-highlight scale-110 transition duration-150 ease-in-out}
-
   .hover {
     transition: 0.2s ease-in-out;
   }
@@ -250,7 +247,7 @@
 
 /* Staff頁面 */
 .staff-container {
-  @apply mx-auto w-[90vw] max-w-[70rem]
+  @apply mx-auto w-[90vw] max-w-[70rem] min-h-full
 }
 
 .staff-list-container {
@@ -280,6 +277,11 @@
 .load-style{
    @apply h-[100vh]  justify-center pt-[16rem] text-[3rem] text-highlight animate-fade-in-up animate-pulse 
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 
 
 
