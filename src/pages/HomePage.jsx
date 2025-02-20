@@ -9,13 +9,19 @@ const HomePage = () => {
   // useTransform 動態改變圖片的模糊程度
   const blur = useTransform(scrollYProgress, [0, 1], [0, 30]) // 模糊從 0 到 10
   // const yPosition = useTransform(scrollYProgress, [0, 1], [0, 100]) // 讓圖片隨滾動移動
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
+  const scale = useTransform(scrollYProgress, [0.8,1], [0, 1])
+  const fadeOut = useTransform(scrollYProgress, [0.8,1], [1, 0])
+  const halfFadeOut = useTransform(scrollYProgress, [0.9,1], [1, 0.6])
+  
 
   const testimonials = [
     { id: "Cindy Su", name: "Customer 1", review: "Very comfortable massage, made me feel completely relaxed." },
     { id: "Allen Lee", name: "Customer 2", review: "Professional service, I feel very satisfied." },
     { id: "Brent Wu", name: "Customer 3", review: "Clean and quiet environment, perfect for relaxation." },
   ];
+
+
+  const blurEffect = useMotionTemplate`blur(${blur}px)`;
 
   const handleScroll = (e)=> {
     if (scrollRef.current) {
@@ -26,25 +32,20 @@ const HomePage = () => {
   return (
     <div className="w-screen overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-      <div className=" w-screen h-screen bg-black bg-opacity-20 text-white text-center " >   
-      <div className="h-screen bg-black bg-opacity-20 text-white text-center">   
-        
+      <section className="relative overflow-hidden w-screen h-screen">
         {/* 背景圖片 */}
         <motion.div
-        className='absolute w-screen h-screen'
+        className='absolute inset-0 w-full h-full z-0'
         style={{
           backgroundImage: "url('/modals/images/pexels-breakingpic-3188.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed', // 讓背景固定
-          filter: useMotionTemplate`blur(${blur}px)`, // 動態改變圖片模糊程度
-          scale: scale,
+          backgroundPositionY: 'fixed',
+          filter: blurEffect, // 動態改變圖片模糊程度
         }}
-        >
-          </motion.div>
-          </div>
-          <div className='absolute inset-0 w-screen h-screen'>
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-20 z-10" ></div>     
+        <div className='absolute inset-0 w-screen h-screen text-white text-center z-20'>
           <motion.h1 
                 className="text-2xl mt-[30vh] md:text-4xl font-bold p-3"
                 initial={{ opacity: 0 }}
@@ -72,8 +73,7 @@ const HomePage = () => {
               >
               BOOKING NOW
               </motion.button>  
-          </div>
-          </div>
+        </div>
       </section>
 
       {/* Services Section */}
@@ -133,8 +133,8 @@ const HomePage = () => {
             {testimonials.map((testimonial, index) => (
               <motion.div 
               key={index}
-              initial={{opacity:0, y:50}} 
-              whileInView={{opacity:1, y:0}}
+              initial={{opacity:0, y:100, scale: 0.5}} 
+              whileInView={{opacity:1, y:0, scale:1}}
               transition={{ duration:1, delay:index*0.5 }}
               className="bg-gray-100 p-6 rounded-lg shadow-md">
                 <p className="text-xl font-semibold">{testimonial.id}</p>
@@ -146,20 +146,40 @@ const HomePage = () => {
       </section>
 
       {/* Booking Section */}
-      <section className="py-20 bg-gray-200">
-        <div className="container mx-auto text-center">
-          <motion.h2 
-            className="text-3xl font-semibold mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.9 }}
-          >
-            立即預約
-          </motion.h2>
-          <button className="py-3 px-8 bg-primary text-white text-lg rounded-lg hover:bg-opacity-80 transition duration-300">
-            開始預約
-          </button>
-        </div>
+      <section className="relative h-[60vh]">
+        <motion.div
+          className='absolute inset-0 w-full h-full z-0'
+          style={{
+            backgroundImage: "url('/modals/images/pexels-rdne-6724351.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: fadeOut
+          }}
+          />
+          <motion.div
+          className='absolute inset-0 w-full h-full z-10'
+          style={{
+            backgroundImage: "url('/modals/images/pexels-cottonbro-3997986.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            scale: scale,
+            opacity: halfFadeOut,
+            positionY: -100
+          }}
+          />
+          <div className="absolute top-[30%] left-[50%] -translate-x-1/2 z-50">
+            <motion.h2 
+              className="text-3xl font-semibold mb-12 text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.9 }}
+            >
+            Life and Relax
+            </motion.h2>
+            <button className="py-3 px-8 bg-primary text-white text-lg rounded-lg hover:bg-opacity-80 transition duration-300">
+              START BOOKING
+            </button>
+          </div>
       </section>
     </div>
   );
