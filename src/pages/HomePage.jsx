@@ -1,6 +1,5 @@
 import { useScroll, useTransform, motion, easeInOut, useMotionTemplate } from 'framer-motion';
 import { useRef } from 'react'
-// import { height, width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 const HomePage = () => {
   const scrollRef = useRef(null)
@@ -8,9 +7,8 @@ const HomePage = () => {
   // useScroll 監控滾動進度
   // useTransform 動態改變圖片的模糊程度
   const blur = useTransform(scrollYProgress, [0, 1], [0, 30]) // 模糊從 0 到 10
-  // const yPosition = useTransform(scrollYProgress, [0, 1], [0, 100]) // 讓圖片隨滾動移動
-  const scale = useTransform(scrollYProgress, [0.8,1], [0, 1])
-  const fadeOut = useTransform(scrollYProgress, [0.8,1], [1, 0])
+  const scale = useTransform(scrollYProgress, [1,0.8], [0, 1])
+  const fadeOut = useTransform(scrollYProgress, [0.8,1], [0, 0.8])
   const halfFadeOut = useTransform(scrollYProgress, [0.9,1], [1, 0.6])
   
 
@@ -23,9 +21,29 @@ const HomePage = () => {
 
   const blurEffect = useMotionTemplate`blur(${blur}px)`;
 
+  const letters = "A purification of body, mind, and soul."
+  const footerLetters = 'Life and Relax'
+  
+  //h2父元素的動畫腳本
+  const h2Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.1, // 每個字母間隔 0.1 秒出現
+      },
+    },
+  };
+  
+  // 個別文字腳本
+  const wordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   const handleScroll = (e)=> {
+    e.preventDefault(); // 防止預設垂直滾動
     if (scrollRef.current) {
-      scrollRef.current.scrollLeft += e.deltaY * 2; // 讓滾輪控制水平滾動
+      scrollRef.current.scrollLeft += e.deltaY * 1.5; // 讓滾輪控制水平滾動
     }
   }
 
@@ -45,9 +63,9 @@ const HomePage = () => {
         }}
         />
         <div className="absolute inset-0 bg-black bg-opacity-20 z-10" ></div>     
-        <div className='absolute inset-0 w-screen h-screen text-white text-center z-20'>
+        <div className='absolute inset-0 w-screen flex flex-col justify-center items-center h-screen text-white text-center z-20'>
           <motion.h1 
-                className="text-2xl mt-[30vh] md:text-4xl font-bold p-3"
+                className="text-2xl md:text-4xl font-bold p-3"
                 initial={{ opacity: 0 }}
                 animate={{ 
                   opacity: 1, 
@@ -56,15 +74,26 @@ const HomePage = () => {
                 
               >
                 Relax your body and mind
-              </motion.h1>
-              <motion.h2
-                className='text-m mt-[5vh] md:text-xl '
-                initial={{ opacity:0 }}
-                animate={{ opacity:1 }}
-                transition={{ duration:2, delay:0.5 }}
-              >
-                Experience tranquility with our expert therapies tailored to your needs.
-              </motion.h2>
+          </motion.h1>
+          <motion.h2
+            className='flex text-m mt-[5vh] md:text-xl'
+            variants={h2Variants}
+            initial='hidden'
+            animate='show'
+          >
+            {letters.split('').map((word, index)=> (
+            <motion.span
+            key={index}
+            variants={wordVariants}
+            className='inline-block'
+            >
+              {word === " " ? "\u00A0" : word} {/* 用不換行空格替換 */}
+            </motion.span>
+
+            ))}
+            
+          </motion.h2>
+              
               <motion.button 
               className="mt-[10vh] py-3 px-8 bg-primary text-white text-lg rounded-lg hover:bg-opacity-80 transition duration-300"
                 initial={{ opacity:0 }}
@@ -77,7 +106,7 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-100  h-[600px]">
+      <section className="py-20 bg-gray-100  h-[100vh]">
         <div className="mx-auto text-center">
           <motion.h2 
             className="text-3xl font-semibold"
@@ -99,18 +128,14 @@ const HomePage = () => {
                 whileInView={{ y:0 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ 
-                whileInView:{ 
                   ease: easeInOut,
-                  type : "inertia",  // 慣性動畫
-                  velocity: 50,  // 按照 type 不同才會有衍生的屬性
                   duration: 1, 
-                  delay: index*2
-                }
+                  delay: index * 0.2
                 }}
               >
                 <img src={`/modals/images/service-image-${index + 1}.jpg`} alt={service} className="object-cover h-[300px] w-[400px]" />
                 <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-lg">{service}</p>
+                <p className="text-white text-lg">{service}</p>
                 </div>
               </motion.div>
             ))}
@@ -146,7 +171,7 @@ const HomePage = () => {
       </section>
 
       {/* Booking Section */}
-      <section className="relative h-[60vh]">
+      <section className="relative h-[100vh]">
         <motion.div
           className='absolute inset-0 w-full h-full z-0'
           style={{
@@ -167,14 +192,22 @@ const HomePage = () => {
             positionY: -100
           }}
           />
-          <div className="absolute top-[30%] left-[50%] -translate-x-1/2 z-50">
+          <div className="absolute top-[50%] left-[50%] -translate-x-1/2 z-50">
             <motion.h2 
-              className="text-3xl font-semibold mb-12 text-white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.9 }}
+              className="text-5xl font-semibold mb-12 text-white"
+              variants={h2Variants}
+              initial='hidden'
+              whileInView='show'
             >
-            Life and Relax
+            {footerLetters.split('').map((word, index)=>(
+              <motion.span
+              key={index}
+              variants={wordVariants}
+              className='inline-block'
+              >
+                {word === ' '? '\u00A0': word}
+              </motion.span>
+            ))}
             </motion.h2>
             <button className="py-3 px-8 bg-primary text-white text-lg rounded-lg hover:bg-opacity-80 transition duration-300">
               START BOOKING
