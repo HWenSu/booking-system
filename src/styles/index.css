@@ -208,7 +208,7 @@
 
 
 .react-datepicker {
-  @apply w-[328px]
+  @apply w-full
 }
 
 .theme-classic .react-datepicker {
